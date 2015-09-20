@@ -91,19 +91,19 @@ public class GeoName extends KDNodeComparator<GeoName> {
 
     protected static enum GeoNameComparator implements Comparator<GeoName> {
         x {
-            @Override
+            //@Override
             public int compare(GeoName a, GeoName b) {
                 return Double.compare(a.point[0], b.point[0]);
             }
         },
         y {
-            @Override
+            //@Override
             public int compare(GeoName a, GeoName b) {
                 return Double.compare(a.point[1], b.point[1]);
             }
         },
         z {
-            @Override
+            //@Override
             public int compare(GeoName a, GeoName b) {
                 return Double.compare(a.point[2], b.point[2]);
             }

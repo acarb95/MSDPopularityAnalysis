@@ -10,14 +10,14 @@ import org.apache.hadoop.mapreduce.lib.output.LazyOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 
-public class Top10Runner {
+public class TopNRunner {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		Configuration conf = new Configuration();
 		Job job = Job.getInstance(conf, "Top 10 Per Country");
-		job.setJarByClass(Top10Runner.class);
-		job.setMapperClass(Top10Mapper.class);
-		job.setReducerClass(Top10Reducer.class);
-		job.setCombinerClass(Top10Combiner.class);
+		job.setJarByClass(TopNRunner.class);
+		job.setMapperClass(TopNMapper.class);
+		job.setReducerClass(TopNReducer.class);
+		job.setCombinerClass(TopNCombiner.class);
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(SongWritable.class);
 		job.setOutputKeyClass(Text.class);

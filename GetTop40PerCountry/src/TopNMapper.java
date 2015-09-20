@@ -1,30 +1,10 @@
-import geocode.ReverseGeoCode;
-
 import java.io.IOException;
-import java.net.URISyntaxException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class Top10Mapper extends Mapper<LongWritable, Text, Text, SongWritable> {
-	public ReverseGeoCode reverseGeoCode;
-
-	public static final Log LOG = LogFactory.getLog(Top10Mapper.class);
-	
-	public void setup(Context context) {
-		try {
-			reverseGeoCode = new ReverseGeoCode(context, "hdfs:///countries/part-r-00000", true, LOG);
-		} catch (IOException | URISyntaxException e) {
-			LOG.error("Error when creating reverseGeoCode object.");
-			System.err.println("Error when creating reverseGeoCode object.");
-			System.err.println("Message: " + e.getMessage());
-			e.printStackTrace();
-			System.exit(-1);
-		}
-	}
+public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 
 	public void map(LongWritable key, Text value, Context context)
 			throws IOException, InterruptedException {
@@ -35,7 +15,9 @@ public class Top10Mapper extends Mapper<LongWritable, Text, Text, SongWritable> 
 			String artist = split[2];
 			double latitude = Double.parseDouble(split[0]);
 			double longitude = Double.parseDouble(split[1]);
-			String location = reverseGeoCode.nearestPlace(latitude, longitude).country;
+			
+			// Implement new lookup table
+			String location = "";//reverseGeoCode.nearestPlace(latitude, longitude).country;
 			double danceability = Double.parseDouble(split[3]);
 			double energy = Double.parseDouble(split[4]);
 			int song_key = Integer.parseInt(split[5]);

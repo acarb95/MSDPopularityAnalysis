@@ -6,7 +6,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 
-public class Top10Reducer extends Reducer<Text, SongWritable, Text, Text> {
+public class TopNCombiner extends Reducer<Text, SongWritable, Text, SongWritable> {
 	public void reduce(Text key, Iterable<SongWritable> values, Context context) throws IOException, InterruptedException {
 		ArrayList<SongWritable> list = new ArrayList<SongWritable>();
 		
@@ -24,7 +24,7 @@ public class Top10Reducer extends Reducer<Text, SongWritable, Text, Text> {
 		}
 		
 		for (int i = 0; i < length; i++) {
-			context.write(key, new Text(list.get(i).title + "\t" + list.get(i).outputFeatures()));
+			context.write(key, new SongWritable(list.get(i)));
 		}
 	}
 }
