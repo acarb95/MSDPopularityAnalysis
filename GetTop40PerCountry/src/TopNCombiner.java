@@ -19,8 +19,8 @@ public class TopNCombiner extends Reducer<Text, SongWritable, Text, SongWritable
 		
 		int length = list.size();
 		
-		if (length > 20){
-			length = 20;
+		if (length > 40){
+			length = 40;
 		}
 		
 		for (int i = 0; i < length; i++) {

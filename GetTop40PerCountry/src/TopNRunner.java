@@ -13,7 +13,7 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 public class TopNRunner {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		Configuration conf = new Configuration();
-		Job job = Job.getInstance(conf, "Top 10 Per Country");
+		Job job = Job.getInstance(conf, "Top 40 Per Country");
 		job.setJarByClass(TopNRunner.class);
 		job.setMapperClass(TopNMapper.class);
 		job.setReducerClass(TopNReducer.class);
@@ -22,6 +22,7 @@ public class TopNRunner {
 		job.setMapOutputValueClass(SongWritable.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
+		job.addCachedfile(new Path("s3n://honor-thesis-data/lookupTable.txt").toURI())
 		LazyOutputFormat.setOutputFormatClass(job, TextOutputFormat.class);
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileInputFormat.setInputDirRecursive(job, true);
