@@ -8,7 +8,7 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
+public class SongSortMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 
 	//Indexes
 	int artistHottnessIndex = 3;
@@ -115,9 +115,11 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			String featureIntegers = timeSignature + "\t" +songKey + "\t" + mode;
 			String featureDoubles = startOfFadeOut + "\t" +duration + "\t" + endOfFadeIn + "\t" +danceability + "\t" + energy + "\t" +loudness + "\t" + tempo + "\t" + hotness;
 
-			if (hotness > 0 && location != null) {
+			if (hotness > 0) {
 				if (location != null) {
 					context.write(new Text(location), new SongWritable(identString, feature1DString, timbre, pitches, featureIntegers, featureDoubles, hotness));
+				} else {
+					context.write(new Text("Unknown"), new SongWritable(identString, feature1DString, timbre, pitches, featureIntegers, featureDoubles, hotness));
 				}
 			} 
 		}
