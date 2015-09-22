@@ -1,12 +1,17 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 
-	//Indexes:
+	//Indexes
 	int artistHottnessIndex = 3;
 	int latitudeIndex = 5;
 	int longitudeIndex = 7;
@@ -38,14 +43,15 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 	HashMap<String, String> geoCodeLookup = new HashMap<String, String>();
 
 	protected void setup(Mapper<LongWritable, Text, Text, SongWritable>.Context context) throws IOException, InterruptedException {
-		if (context.getCachedFiles() != null && context.getCachedFiles().length > 0) {
-			File lookupTable = new File("./lookupTable.text");
-
+		if (context.getCacheFiles() != null && context.getCacheFiles().length > 0) {
+			Path path = new Path(context.getCacheFiles()[0]);
+            FileSystem system = FileSystem.get(context.getConfiguration());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(system.open(path)));
 			// Save into class variable
-			Scanner reader = new Scanner(lookupTable);
-			while (reader.hasNext()) {
-				split = reader.nextLine().split("=");
-				geoCodeLookup.add(split[0], split[1]);
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+				String[] split = line.split("=");
+				geoCodeLookup.put(split[0], split[1]);
 			}
 
 			reader.close();
@@ -67,7 +73,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			double longitude = Double.parseDouble(split[longitudeIndex]);
 			
 			// Implement new lookup table
-			String location = "";//reverseGeoCode.nearestPlace(latitude, longitude).country;
+			String location = geoCodeLookup.get(split[latitudeIndex] +"," + split[longitudeIndex]);//reverseGeoCode.nearestPlace(latitude, longitude).country;
 
 			// Composition 1D Arrays
 			String barsStart = split[barStartIndex];
@@ -85,7 +91,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			
 			// Composition Integers
 			String timeSignature = split[timeSignatureIndex];
-			String key = split[keyIndex];
+			String songKey = split[keyIndex];
 			String mode = split[modeIndex];
 
 			// Composition Doubles/Floats
@@ -101,11 +107,11 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			Double hotness = Double.parseDouble(split[songHottnessIndex]);
 			
 			// Create identification string
-			identString = song_title + "\t" + artist + "\t" + latitude + "\t" + longitude + "\t" + location;
-			featureString = barsStart + "\t" + beatsStart + "\t" + sectionsStart + "\t" +segmentsMaxLoudness + "\t" + segmentsMaxLoudnessTime+ "\t" + segmentsMaxLoudnessStart + "\t" + segmentsStart + "\t" + tatumsStart + "\t" +timbre + "\t" + pitches + "\t" + timeSignature + "\t" +key + "\t" + mode + "\t" +startOfFadeOut + "\t" +duration + "\t" + endOfFadeIn + "\t" +danceability + "\t" + energy + "\t" +loudness + "\t" + tempo + "\t" + hotness;
+			String identString = song_title + "\t" + artist + "\t" + latitude + "\t" + longitude + "\t" + location;
+			String featureString = barsStart + "\t" + beatsStart + "\t" + sectionsStart + "\t" +segmentsMaxLoudness + "\t" + segmentsMaxLoudnessTime+ "\t" + segmentsMaxLoudnessStart + "\t" + segmentsStart + "\t" + tatumsStart + "\t" +timbre + "\t" + pitches + "\t" + timeSignature + "\t" +songKey + "\t" + mode + "\t" +startOfFadeOut + "\t" +duration + "\t" + endOfFadeIn + "\t" +danceability + "\t" + energy + "\t" +loudness + "\t" + tempo + "\t" + hotness;
 
 			if (hotness > 0) {
-				context.write(new Text(location), new SongWritable(identString, featureString, hottness));
+				context.write(new Text(location), new SongWritable(identString, featureString, hotness));
 			}
 		}
 	}

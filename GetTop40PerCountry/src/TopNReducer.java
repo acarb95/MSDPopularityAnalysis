@@ -4,9 +4,16 @@ import java.util.Collections;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
-
+import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 
 public class TopNReducer extends Reducer<Text, SongWritable, Text, Text> {
+	private MultipleOutputs<Text, Text> mos;
+	
+	public void setup(Context context) throws IOException, InterruptedException {
+		super.setup(context);
+		mos = new MultipleOutputs<Text, Text>(context);
+	}
+	
 	public void reduce(Text key, Iterable<SongWritable> values, Context context) throws IOException, InterruptedException {
 		ArrayList<SongWritable> list = new ArrayList<SongWritable>();
 		
@@ -24,7 +31,12 @@ public class TopNReducer extends Reducer<Text, SongWritable, Text, Text> {
 		}
 		
 		for (int i = 0; i < length; i++) {
-			context.write(key, new Text(list.get(i).title + "\t" + list.get(i).outputFeatures()));
+			mos.write(key, new Text(list.get(i).title + "\t" + list.get(i).outputFeatures()), key + "Top40Songs");
 		}
+	}
+	
+	public void cleanup(Context context) throws IOException, InterruptedException {
+		super.cleanup(context);
+		mos.close();
 	}
 }

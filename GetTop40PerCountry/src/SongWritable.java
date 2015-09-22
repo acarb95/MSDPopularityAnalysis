@@ -11,7 +11,7 @@ public class SongWritable implements WritableComparable<SongWritable> {
 	public String featureData = ""; //barsStart\tbeatsStart\t...\tloudness\ttempo
 
 	// // Identifiers
-	// public String title = "";
+	public String title = "";
 	// public String artist = "";
 
 	// // Location Variables
@@ -55,6 +55,8 @@ public class SongWritable implements WritableComparable<SongWritable> {
 		identifyingData = ""; //Title\tArtist\tLatitude\tLongitude\tCountry
 		featureData = ""; //barsStart\tbeatsStart\t...\tloudness\ttempo
 
+		title = "";
+		
 		// Comparison Variable
 		hotness = 0;
 	}
@@ -62,6 +64,8 @@ public class SongWritable implements WritableComparable<SongWritable> {
 	public SongWritable(String identifyingData, String featureData, double comparisonVariable) {
 		this.identifyingData = identifyingData;
 		this.featureData = featureData;
+		
+		title = identifyingData.split("\t")[0];
 
 		this.hotness = comparisonVariable;
 	}
@@ -69,6 +73,8 @@ public class SongWritable implements WritableComparable<SongWritable> {
 	public SongWritable(SongWritable other) {
 		this.identifyingData = other.identifyingData;
 		this.featureData = other.featureData;
+		
+		this.title = other.title;
 		
 		// Comparison Variable
 		this.hotness = other.hotness;
@@ -79,6 +85,8 @@ public class SongWritable implements WritableComparable<SongWritable> {
 		this.identifyingData = arg0.readUTF();
 		this.featureData = arg0.readUTF();
 		
+		this.title = arg0.readUTF();
+		
 		// Comparison Variable
 		this.hotness = arg0.readDouble();
 	}
@@ -87,6 +95,8 @@ public class SongWritable implements WritableComparable<SongWritable> {
 	public void write(DataOutput arg0) throws IOException {
 		arg0.writeUTF(identifyingData);
 		arg0.writeUTF(featureData);
+		
+		arg0.writeUTF(title);
 		
 		// Comparison Variable
 		arg0.writeDouble(hotness);

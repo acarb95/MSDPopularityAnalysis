@@ -1,4 +1,4 @@
-<project name="Top10Filter" default="dist" basedir=".">
+<project name="Top40Filter" default="dist" basedir=".">
     <description>
         simple example build file
     </description>
@@ -34,7 +34,7 @@
     <mkdir dir="${dist}"/>
 
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/top10.jar" basedir="${build}"/>
+    <jar jarfile="${dist}/top40.jar" basedir="${build}"/>
   </target>
 
   <target name="clean"

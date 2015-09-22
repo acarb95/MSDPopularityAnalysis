@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -11,7 +13,7 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 
 public class TopNRunner {
-	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException, URISyntaxException {
 		Configuration conf = new Configuration();
 		Job job = Job.getInstance(conf, "Top 40 Per Country");
 		job.setJarByClass(TopNRunner.class);
@@ -22,7 +24,7 @@ public class TopNRunner {
 		job.setMapOutputValueClass(SongWritable.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
-		job.addCachedfile(new Path("s3n://honor-thesis-data/lookupTable.txt").toURI())
+		job.addCacheFile(new URI("s3n://honor-thesis-data/lookupTable.txt"));
 		LazyOutputFormat.setOutputFormatClass(job, TextOutputFormat.class);
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileInputFormat.setInputDirRecursive(job, true);
