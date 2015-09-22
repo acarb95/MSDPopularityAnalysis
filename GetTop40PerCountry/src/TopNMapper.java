@@ -1,10 +1,9 @@
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.net.URI;
 import java.util.HashMap;
+import java.util.Scanner;
 
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -44,17 +43,21 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 
 	protected void setup(Mapper<LongWritable, Text, Text, SongWritable>.Context context) throws IOException, InterruptedException {
 		if (context.getCacheFiles() != null && context.getCacheFiles().length > 0) {
-			Path path = new Path(context.getCacheFiles()[0]);
-            FileSystem system = FileSystem.get(context.getConfiguration());
-            BufferedReader reader = new BufferedReader(new InputStreamReader(system.open(path)));
-			// Save into class variable
-            String line = "";
-            while ((line = reader.readLine()) != null) {
-				String[] split = line.split("=");
-				geoCodeLookup.put(split[0], split[1]);
-			}
+			URI mappingFileuri = context.getCacheFiles()[0];
+			
+			if (mappingFileuri != null) {
+				File file = new File("lookupTable.txt");
+				
+				Scanner reader = new Scanner(file);
+				// Save into class variable
+	            while (reader.hasNext()) {
+	            	String line = reader.nextLine();
+					String[] split = line.split("=");
+					geoCodeLookup.put(split[0], split[1]);
+				}
 
-			reader.close();
+				reader.close();
+			}
 		}
 
 		super.setup(context);

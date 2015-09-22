@@ -14,6 +14,7 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 public class TopNRunner {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException, URISyntaxException {
+		String s3file = args[2];
 		Configuration conf = new Configuration();
 		Job job = Job.getInstance(conf, "Top 40 Per Country");
 		job.setJarByClass(TopNRunner.class);
@@ -24,7 +25,7 @@ public class TopNRunner {
 		job.setMapOutputValueClass(SongWritable.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
-		job.addCacheFile(new URI("s3n://honor-thesis-data/lookupTable.txt"));
+		job.addCacheFile(new URI(s3file + "#theFile"));
 		LazyOutputFormat.setOutputFormatClass(job, TextOutputFormat.class);
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileInputFormat.setInputDirRecursive(job, true);
