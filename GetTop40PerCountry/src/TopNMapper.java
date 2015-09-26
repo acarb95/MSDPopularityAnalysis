@@ -2,8 +2,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
-import java.lang.Exception;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -41,6 +41,8 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 	int yearIndex = 53;
 
 	HashMap<String, String> geoCodeLookup = new HashMap<String, String>();
+	
+	HashSet<String> countriesToGet = new HashSet<String>();
 
 	protected void setup(Mapper<LongWritable, Text, Text, SongWritable>.Context context) throws IOException, InterruptedException {
 		if (context.getCacheFiles() != null && context.getCacheFiles().length > 0) {
@@ -61,6 +63,19 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			}
 		}
 
+		countriesToGet.add("CD");
+		countriesToGet.add("CG");
+		countriesToGet.add("CR");
+		countriesToGet.add("CW");
+		countriesToGet.add("DM");
+		//countriesToGet.add("GB");
+		//countriesToGet.add("NE"); --> Might break it
+		countriesToGet.add("RE");
+		countriesToGet.add("TF");
+		countriesToGet.add("TH");
+		countriesToGet.add("TV");
+		countriesToGet.add("YE");
+		
 		super.setup(context);
 	}
 	
@@ -121,7 +136,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			String featureDoubles = startOfFadeOut + "|" +duration + "|" + endOfFadeIn + "|" +danceability + "|" + energy + "|" +loudness + "|" + tempo;
 
 			if (hotness > 0 && location != null) {
-				if (location != null) {
+				if (countriesToGet.contains(location)) {
 					context.write(new Text(location), new SongWritable(identString, feature1DString, timbre, pitches, featureIntegers, featureDoubles, hotness));
 				}
 			} 
