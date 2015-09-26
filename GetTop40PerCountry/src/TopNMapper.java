@@ -89,8 +89,8 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			String tatumsStart = split[tatumsStartIndex];
 			
 			// Composition 2D Array
-			String timbre = split[segTimbreIndex];
-			String pitches = split[segPitchesIndex];
+			//String timbre = split[segTimbreIndex];
+			//String pitches = split[segPitchesIndex];
 			
 			// Composition Integers
 			String timeSignature = split[timeSignatureIndex];
@@ -110,14 +110,14 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			Double hotness = Double.parseDouble(split[songHottnessIndex]);
 			
 			// Create identification string
-			String identString = song_title + "\t" + artist + "\t" + latitude + "\t" + longitude + "\t" + location;
-			String feature1DString = barsStart + "\t" + beatsStart + "\t" + sectionsStart + "\t" +segmentsMaxLoudness + "\t" + segmentsMaxLoudnessTime+ "\t" + segmentsMaxLoudnessStart + "\t" + segmentsStart + "\t"+ tatumsStart;
-			String featureIntegers = timeSignature + "\t" +songKey + "\t" + mode;
-			String featureDoubles = startOfFadeOut + "\t" +duration + "\t" + endOfFadeIn + "\t" +danceability + "\t" + energy + "\t" +loudness + "\t" + tempo + "\t" + hotness;
+			String identString = song_title + "|" + artist + "|" + latitude + "|" + longitude + "|" + location;
+			String feature1DString = barsStart + "|" + beatsStart + "|" + sectionsStart + "|" +segmentsMaxLoudness + "|" + segmentsMaxLoudnessTime+ "|" + segmentsMaxLoudnessStart + "|" + segmentsStart + "|"+ tatumsStart;
+			String featureIntegers = timeSignature + "|" +songKey + "|" + mode;
+			String featureDoubles = startOfFadeOut + "|" +duration + "|" + endOfFadeIn + "|" +danceability + "|" + energy + "|" +loudness + "|" + tempo;
 
 			if (hotness > 0 && location != null) {
 				if (location != null) {
-					context.write(new Text(location), new SongWritable(identString, feature1DString, timbre, pitches, featureIntegers, featureDoubles, hotness));
+					context.write(new Text(location), new SongWritable(identString, feature1DString, featureIntegers, featureDoubles, hotness));
 				}
 			} 
 		}
