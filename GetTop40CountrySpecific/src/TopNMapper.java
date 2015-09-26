@@ -116,7 +116,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			String featureIntegers = timeSignature + "|" +songKey + "|" + mode;
 			String featureDoubles = startOfFadeOut + "|" +duration + "|" + endOfFadeIn + "|" +danceability + "|" + energy + "|" +loudness + "|" + tempo;
 
-			if (hotness > 0 && location != null) {
+			if (hotness >= 0.75 && location != null) {
 				if (location.equals(country)) {
 					context.write(new Text(location), new SongWritable(identString, feature1DString, featureIntegers, featureDoubles, hotness));
 				}
