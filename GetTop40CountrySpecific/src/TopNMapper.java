@@ -3,8 +3,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.lang.Exception;
 
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -29,9 +29,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 	int segMaxLoudnessIndex = 35;
 	int segMaxLoudTimeIndex = 36;
 	int segMaxLoudStartIndex = 37;
-	int segPitchesIndex = 38;
 	int segStartIndex = 39;
-	int segTimbreIndex = 40;
 	int songHottnessIndex = 42;
 	int startOfFadeOutIndex = 44;
 	int tatumsStartIndex = 46;
@@ -39,6 +37,8 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 	int timeSignatureIndex = 48;
 	int songTitleIndex = 50;
 	int yearIndex = 53;
+	
+	String country = "";
 
 	HashMap<String, String> geoCodeLookup = new HashMap<String, String>();
 
@@ -61,6 +61,8 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			}
 		}
 
+		Configuration conf = context.getConfiguration();
+		country = conf.get("Country");
 		super.setup(context);
 	}
 	
@@ -68,8 +70,6 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			throws IOException, InterruptedException {
 		String[] split = value.toString().split("\t");
 
-		// TODO: Fix parsing for full song data
-		// TODO: might be easier to not have a song writable object and just concat into a string and add to song writable.
 		if (!split[latitudeIndex].toLowerCase().contains("nan") && !split[longitudeIndex].toLowerCase().contains("nan") && split.length == 54) {
 			String song_title = split[songTitleIndex];
 			String artist = split[artistNameIndex];
@@ -88,11 +88,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			String segmentsMaxLoudnessStart = split[segMaxLoudStartIndex];
 			String segmentsStart = split[segStartIndex];
 			String tatumsStart = split[tatumsStartIndex];
-			
-			// Composition 2D Array
-			//String timbre = split[segTimbreIndex];
-			//String pitches = split[segPitchesIndex];
-			
+
 			// Composition Integers
 			String timeSignature = split[timeSignatureIndex];
 			String songKey = split[keyIndex];
@@ -121,7 +117,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			String featureDoubles = startOfFadeOut + "|" +duration + "|" + endOfFadeIn + "|" +danceability + "|" + energy + "|" +loudness + "|" + tempo;
 
 			if (hotness > 0 && location != null) {
-				if (location != null) {
+				if (location.equals(country)) {
 					context.write(new Text(location), new SongWritable(identString, feature1DString, featureIntegers, featureDoubles, hotness));
 				}
 			} 

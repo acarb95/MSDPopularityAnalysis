@@ -90,8 +90,8 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			String tatumsStart = split[tatumsStartIndex];
 			
 			// Composition 2D Array
-			//String timbre = split[segTimbreIndex];
-			//String pitches = split[segPitchesIndex];
+			String timbre = split[segTimbreIndex];
+			String pitches = split[segPitchesIndex];
 			
 			// Composition Integers
 			String timeSignature = split[timeSignatureIndex];
@@ -122,7 +122,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 
 			if (hotness > 0 && location != null) {
 				if (location != null) {
-					context.write(new Text(location), new SongWritable(identString, feature1DString, featureIntegers, featureDoubles, hotness));
+					context.write(new Text(location), new SongWritable(identString, feature1DString, timbre, pitches, featureIntegers, featureDoubles, hotness));
 				}
 			} 
 		}

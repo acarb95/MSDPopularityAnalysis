@@ -15,8 +15,10 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 public class TopNRunner {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException, URISyntaxException {
 		String s3file = args[2];
+		String country = args[3];
 		Configuration conf = new Configuration();
-		Job job = Job.getInstance(conf, "Top 40 Per Country");
+		conf.set("Country", country);
+		Job job = Job.getInstance(conf, "Top 40 Of A Country");
 		job.setJarByClass(TopNRunner.class);
 		job.setMapperClass(TopNMapper.class);
 		job.setReducerClass(TopNReducer.class);
