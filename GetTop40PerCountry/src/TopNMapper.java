@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.lang.Exception;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -107,8 +108,12 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			String tempo = split[tempoIndex];
 
 			// This must be accurate for comparisons.
-			Double hotness = Double.parseDouble(split[songHottnessIndex]);
-			
+         Double hotness = -1.0;
+         try {
+			   hotness = Double.parseDouble(split[songHottnessIndex]);
+         } catch (Exception e) {
+            hotness = -1.0;
+         }
 			// Create identification string
 			String identString = song_title + "\t" + artist + "\t" + latitude + "\t" + longitude + "\t" + location;
 			String feature1DString = barsStart + "\t" + beatsStart + "\t" + sectionsStart + "\t" +segmentsMaxLoudness + "\t" + segmentsMaxLoudnessTime+ "\t" + segmentsMaxLoudnessStart + "\t" + segmentsStart + "\t"+ tatumsStart;
