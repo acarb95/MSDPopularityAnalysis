@@ -63,13 +63,11 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			}
 		}
 
-		countriesToGet.add("CD");
 		countriesToGet.add("CG");
 		countriesToGet.add("CR");
 		countriesToGet.add("CW");
 		countriesToGet.add("DM");
-		//countriesToGet.add("GB");
-		countriesToGet.add("NE"); //--> Might break it
+		countriesToGet.add("NE");
 		countriesToGet.add("RE");
 		countriesToGet.add("TF");
 		countriesToGet.add("TH");
@@ -83,8 +81,6 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			throws IOException, InterruptedException {
 		String[] split = value.toString().split("\t");
 
-		// TODO: Fix parsing for full song data
-		// TODO: might be easier to not have a song writable object and just concat into a string and add to song writable.
 		if (!split[latitudeIndex].toLowerCase().contains("nan") && !split[longitudeIndex].toLowerCase().contains("nan") && split.length == 54) {
 			String song_title = split[songTitleIndex];
 			String artist = split[artistNameIndex];

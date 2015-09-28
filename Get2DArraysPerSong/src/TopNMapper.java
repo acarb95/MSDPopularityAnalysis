@@ -85,7 +85,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, Text> {
 			String identString = song_title + "|" + artist + "|" + latitude + "|" + longitude + "|" + location;
 
 			if (location != null && top40Songs.contains(identString)) {
-					mos.write(new Text(identString), new Text(timbre + "|" + pitches), key+"Top40TimbrePitch");
+					mos.write(new Text(identString), new Text(timbre + "|" + pitches), location+"Top40TimbrePitch");
 			} 
 		}
 	}

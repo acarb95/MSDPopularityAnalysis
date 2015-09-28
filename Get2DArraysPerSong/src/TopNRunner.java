@@ -22,6 +22,7 @@ public class TopNRunner {
 		job.addCacheFile(new URI(lookupFile + "#theFile0"));
 		//Iterate through directory
 		File[] files = new File(s3folder).listFiles();
+		// NULL POINTER EXCEPTION
 		for (int i = 0; i < files.length; i++) {
 			File file = files[i];
 			if (!file.isDirectory()) {
