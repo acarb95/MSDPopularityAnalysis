@@ -68,7 +68,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 		countriesToGet.add("CR");
 		countriesToGet.add("CW");
 		countriesToGet.add("DM");
-		countriesToGet.add("GB");
+		//countriesToGet.add("GB");
 		countriesToGet.add("NE"); //--> Might break it
 		countriesToGet.add("RE");
 		countriesToGet.add("TF");

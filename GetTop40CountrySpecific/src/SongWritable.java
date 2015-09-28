@@ -126,7 +126,7 @@ public class SongWritable implements WritableComparable<SongWritable> {
 	}
 	
 	public String getFeatureData() {
-		return feature1DArray + "|" + featureIntegers + "|" + featureDoubles;
+		return feature1DArray + "|" + featureIntegers + "|" + featureDoubles + "|" + hotness;
 	}
 
 	@Override
