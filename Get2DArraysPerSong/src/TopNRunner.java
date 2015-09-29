@@ -33,7 +33,7 @@ public class TopNRunner {
 		} else if (!s3folder.isEmpty()){
 			job.addCacheFile(new URI(s3folder+"#theFile1"));
 		}
-		
+		job.setNumReduceTasks(0);
 		job.setJarByClass(TopNRunner.class);
 		job.setMapperClass(TopNMapper.class);
 		job.setOutputKeyClass(Text.class);
