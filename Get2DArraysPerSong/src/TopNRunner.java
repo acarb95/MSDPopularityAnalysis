@@ -23,12 +23,17 @@ public class TopNRunner {
 		//Iterate through directory
 		File[] files = new File(s3folder).listFiles();
 		// NULL POINTER EXCEPTION
+		if (files != null) {
 		for (int i = 0; i < files.length; i++) {
 			File file = files[i];
 			if (!file.isDirectory()) {
 				job.addCacheFile(new URI(file + "#theFile" + (i+1)));
 			}
 		}
+		} else if (!s3folder.isEmpty()){
+			job.addCacheFile(new URI(s3folder+"#theFile1"));
+		}
+		
 		job.setJarByClass(TopNRunner.class);
 		job.setMapperClass(TopNMapper.class);
 		job.setOutputKeyClass(Text.class);
