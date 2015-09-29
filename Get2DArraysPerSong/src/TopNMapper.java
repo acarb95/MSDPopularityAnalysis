@@ -30,7 +30,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, Text> {
 			
 			URI mappingFileuri = uris[0];
 			if (mappingFileuri != null) {
-				File file = new File("theFile");
+				File file = new File("theFile0");
 				
 				Scanner reader = new Scanner(file);
 				// Save into class variable
@@ -46,7 +46,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, Text> {
 			for (int i = 1; i < uris.length; i ++) {
 				URI uri = uris[i];
 				if (uri != null) {
-					File file = new File("theFile");
+					File file = new File("theFile" + i);
 					
 					Scanner reader = new Scanner(file);
 					// Save into class variable
