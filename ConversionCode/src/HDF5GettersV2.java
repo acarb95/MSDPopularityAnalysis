@@ -902,6 +902,7 @@ public class HDF5GettersV2 {
 	 *****************************************/
 
 	public static void main(String[] args) throws IOException {
+<<<<<<< HEAD
 //		if (args.length < 1) {
 //			System.out.println("file 'hdf5_getters.java'");
 //			System.out.println("T. Bertin-Mahieux (2010) tb2332@columbia.edu");
@@ -947,6 +948,50 @@ public class HDF5GettersV2 {
 		FileWriter fw = new FileWriter(args[1]);
 		
 		extractSongInfo(file.getAbsolutePath(), fw);
+=======
+		if (args.length < 1) {
+			System.out.println("file 'hdf5_getters.java'");
+			System.out.println("T. Bertin-Mahieux (2010) tb2332@columbia.edu");
+			System.out.println("a util static class to read HDF5 song files from");
+			System.out.println("the Million Songs Dataset project");
+			System.out.println("demo:");
+			System.out.println("   see README.txt to compile");
+			System.out.println("   java hdf5_getters <some HDF5 song file>");
+			System.exit(0);
+		}
+		
+		// The output folder to write all the files to
+		File fileToWrite = new File(args[1]);
+
+		// if file doesnt exists, then create it
+		if (!fileToWrite.exists()) {
+			fileToWrite.mkdirs();
+		}
+
+		long start = System.currentTimeMillis();
+
+		// The input folder name (i.e. /s/bach/k/under/acarbona/MSD_data/data/)
+		// Set the orig_foldername to the folder above so data is included in the file names
+		String foldername = args[0];
+		orig_foldername = foldername.substring(0, foldername.indexOf("/data"));
+
+		System.out.println("Starting folder: " + foldername);
+		
+		System.out.print("Traversing...");
+		
+		// Start recursive call
+		browseFolder(foldername, args[1]);
+
+		long end = System.currentTimeMillis();
+
+		long min = TimeUnit.MILLISECONDS.toMinutes(end-start);
+		
+		long sec = TimeUnit.MILLISECONDS.toSeconds(end - start) - TimeUnit.MINUTES.toSeconds(min);
+		
+		System.out.println("\nDone!");
+		System.out.println("Time taken: " + min + " minutes and " + sec + " seconds");
+		
+>>>>>>> 1a77d6cdd07ce10e720364a6ad65fc93bb9f2208
 	}
 
 }

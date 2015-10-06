@@ -106,9 +106,15 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			// This must be accurate for comparisons.
          Double hotness = -1.0;
          try {
+<<<<<<< HEAD
         	 hotness = Double.parseDouble(split[songHottnessIndex]);
          } catch (Exception e) {
         	 hotness = -1.0;
+=======
+			   hotness = Double.parseDouble(split[songHottnessIndex]);
+         } catch (Exception e) {
+            hotness = -1.0;
+>>>>>>> 1a77d6cdd07ce10e720364a6ad65fc93bb9f2208
          }
 			// Create identification string
 			String identString = song_title + "|" + artist + "|" + latitude + "|" + longitude + "|" + location;
