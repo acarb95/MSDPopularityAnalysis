@@ -24,21 +24,12 @@ public class TopNRunner {
 		File[] files = new File(s3folder).listFiles();
 		// NULL POINTER EXCEPTION
 		if (files != null) {
-<<<<<<< HEAD
 			for (int i = 0; i < files.length; i++) {
 				File file = files[i];
 				if (!file.isDirectory()) {
 					job.addCacheFile(new URI(file + "#theFile" + (i+1)));
 				}
 			}
-=======
-		for (int i = 0; i < files.length; i++) {
-			File file = files[i];
-			if (!file.isDirectory()) {
-				job.addCacheFile(new URI(file + "#theFile" + (i+1)));
-			}
-		}
->>>>>>> 1a77d6cdd07ce10e720364a6ad65fc93bb9f2208
 		} else if (!s3folder.isEmpty()){
 			job.addCacheFile(new URI(s3folder+"#theFile1"));
 		}

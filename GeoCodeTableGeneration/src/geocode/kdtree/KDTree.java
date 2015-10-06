@@ -22,9 +22,6 @@ THE SOFTWARE.
 
 package geocode.kdtree;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  *
