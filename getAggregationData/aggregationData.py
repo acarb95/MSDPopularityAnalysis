@@ -105,7 +105,7 @@ class NgramNeighbors(MRJob):
 
 		score = clf.score(testx, testy)
 
-		results = (coefficients, sample_features, score)
+		results = (coefficients, samples_features, score)
 
 		yield key, str(results)
 
