@@ -97,9 +97,9 @@ class NgramNeighbors(MRJob):
 		
 		clf = linear_model.SGDRegressor()
 
-		clf.fit_transform(trainx, trainy)
+		clf.fit(trainx, trainy)
 
-		clf.transform(trainx)
+		#clf.transform(trainx)
 
 		coefficients = clf.coef_
 
