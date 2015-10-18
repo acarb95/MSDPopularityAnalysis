@@ -97,7 +97,7 @@ class NgramNeighbors(MRJob):
 		
 		clf = linear_model.SGDRegressor()
 
-		clf.fit(trainx, trainy)
+		samples, features = clf.fit_transform(trainx, trainy)
 
 		#clf.transform(trainx)
 
@@ -105,7 +105,7 @@ class NgramNeighbors(MRJob):
 
 		score = clf.score(testx, testy)
 
-		results = (train, test, coefficients, score)
+		results = (coefficients, features, score)
 
 		yield key, str(results)
 
