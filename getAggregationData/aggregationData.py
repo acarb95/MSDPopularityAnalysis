@@ -27,14 +27,14 @@ class NgramNeighbors(MRJob):
 		# Second country variable at index 5
 
 		# 1D arrays --> get numpy version np.fromstring(barsStart.strip("[]"),  sep=', ')
-		featureArray.extend(getAggregations(np.fromstring(data[6].strip("[]"),  sep=', '))) #barsStart
-		featureArray.extend(getAggregations(np.fromstring(data[7].strip("[]"),  sep=', '))) #beatsStart
-		featureArray.extend(getAggregations(np.fromstring(data[8].strip("[]"),  sep=', '))) #sectionsStart
-		featureArray.extend(getAggregations(np.fromstring(data[9].strip("[]"),  sep=', '))) #segmentsMaxLoudness
-		featureArray.extend(getAggregations(np.fromstring(data[10].strip("[]"),  sep=', '))) #segmentsMaxLoudnessTime
-		featureArray.extend(getAggregations(np.fromstring(data[11].strip("[]"),  sep=', '))) #segmentsMaxLoudnessStart
-		featureArray.extend(getAggregations(np.fromstring(data[12].strip("[]"),  sep=', '))) #segmentsStart
-		featureArray.extend(getAggregations(np.fromstring(data[13].strip("[]"),  sep=', '))) #tatumsStart
+		featureArray.extend(self.getAggregations(np.fromstring(data[6].strip("[]"),  sep=', '))) #barsStart
+		featureArray.extend(self.getAggregations(np.fromstring(data[7].strip("[]"),  sep=', '))) #beatsStart
+		featureArray.extend(self.getAggregations(np.fromstring(data[8].strip("[]"),  sep=', '))) #sectionsStart
+		featureArray.extend(self.getAggregations(np.fromstring(data[9].strip("[]"),  sep=', '))) #segmentsMaxLoudness
+		featureArray.extend(self.getAggregations(np.fromstring(data[10].strip("[]"),  sep=', '))) #segmentsMaxLoudnessTime
+		featureArray.extend(self.getAggregations(np.fromstring(data[11].strip("[]"),  sep=', '))) #segmentsMaxLoudnessStart
+		featureArray.extend(self.getAggregations(np.fromstring(data[12].strip("[]"),  sep=', '))) #segmentsStart
+		featureArray.extend(self.getAggregations(np.fromstring(data[13].strip("[]"),  sep=', '))) #tatumsStart
 
 		# 2D arrays
 		timbre = data[14]
@@ -49,12 +49,12 @@ class NgramNeighbors(MRJob):
 		# Each one represents a PCA coefficient
 		for item in timbreSplit:
 			item = np.fromstring(item.strip(" ").strip("[]"), sep=', ')
-			featureArray.extend(getAggregations(item))
+			featureArray.extend(self.getAggregations(item))
 
 		# Each one represents a note
 		for item in pitchSplit:
 			item = np.fromstring(item.strip(" ").strip("[]"), sep=', ')
-			featureArray.extend(getAggregations(item))
+			featureArray.extend(self.getAggregations(item))
 
 		# Integers
 		featureArray.append(data[16]) #timeSignature
