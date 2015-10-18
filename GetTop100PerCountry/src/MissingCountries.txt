@@ -17,7 +17,6 @@ EG
 ES
 FI
 FR
-GB
 GR
 HR
 HU
@@ -53,7 +52,6 @@ TT
 TW
 UA
 UG
-US
 UY
 VE
 VI
