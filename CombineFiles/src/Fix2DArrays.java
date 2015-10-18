@@ -8,29 +8,47 @@ import java.util.Scanner;
 public class Fix2DArrays {
 
 	public static void main(String[] args) {
-		File file = new File(args[0]);
+		traverseDirectory(args[0], args[1]);
+	}
+
+	private static void traverseDirectory(String inputDir, String outputDir) {
+		File inDir = new File(inputDir);
+		File outDir = new File(outputDir);
 		
-		File outfile = new File(args[1]);
-		
+		if (inDir.isDirectory()) {
+			for (File file : inDir.listFiles()) {
+				if (!file.isDirectory() && file.getName().endsWith(".txt")) {
+					convertFile(file, new File(outDir, file.getName()));
+				}
+			}
+		} else {
+			convertFile(inDir, outDir);
+		}
+	}
+	
+	private static void convertFile(File inFile, File outFile) {
 		Scanner reader = null;
 		PrintWriter writer = null;
 		
 		try {
-		reader = new Scanner(file);
-		
-		String line = reader.nextLine();
-		
-		writer = new PrintWriter(outfile);
-		
-		String[] split = line.split("\t");
-		
-		for (int i = 0; i < split.length; i++) {
-			String part = split[i];
-			if (i == 38 || i==40) {
-				part = convert2DArrayToProperForm(part);
+			reader = new Scanner(inFile);
+			writer = new PrintWriter(outFile);
+			
+			while (reader.hasNext()) {
+				String line = reader.nextLine();
+				
+				String[] split = line.split("\t");
+				
+				for (int i = 0; i < split.length; i++) {
+					String part = split[i];
+					if (i == 14 || i== 15) {
+						part = convert2DArrayToProperForm(part);
+					}
+					writer.write(part + "\t");
+				}
+				
+				writer.write("\n");
 			}
-			writer.write(part + "\t");
-		}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} finally {
@@ -42,7 +60,6 @@ public class Fix2DArrays {
 			}
 		}
 	}
-
 	
 	private static String convert2DArrayToProperForm(String array)  {
 		String proper = "";

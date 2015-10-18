@@ -9,6 +9,7 @@ public class Runner {
 
 	public static void main(String[] args) {
 		HashMap<String, String> top40Songs = new HashMap<String, String>();
+		HashMap<String, String> finishedSongs = new HashMap<String, String>();
 		String top40File = args[0];
 		String arraysFile = args[1];
 		
@@ -31,7 +32,7 @@ public class Runner {
 		PrintWriter writer = null;
 		try {
 			reader = new Scanner(new File(arraysFile));
-			writer = new PrintWriter(new File("./USTop40Songs.txt"));
+			writer = new PrintWriter(new File(args[2]));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,13 +41,15 @@ public class Runner {
 		while (reader.hasNext()) {
 			String line = reader.nextLine();
 			String[] split = line.split("\t");
-			if (top40Songs.containsKey(split[0])) {
-				top40Songs.put(split[0], getLocation(split[0]) + "\t" + split[0].replaceAll("[|]", "\t") + "\t" + insert2DArrays(split[1], top40Songs.get(split[0])));
+			if (top40Songs.containsKey(split[0])) {		
+				String outputString = getLocation(split[0]) + "\t" + split[0].replaceAll("[|]", "\t") + "\t" + insert2DArrays(split[1], top40Songs.get(split[0]));
+				finishedSongs.put(split[0], outputString);
 			}
 		}
 		
-		for (String song : top40Songs.keySet()) {
-			writer.println(top40Songs.get(song));
+		for (String song : finishedSongs.keySet()) {
+			writer.println(finishedSongs.get(song));
+			System.out.println("Data length: " + finishedSongs.get(song).split("\t").length);
 		}
 		
 		reader.close();
@@ -72,8 +75,8 @@ public class Runner {
 			} else if (i == dataList.length -1) {
 				dataString += dataList[i];
 			} else {
-				// Insert 2D arrays first
-				dataString += newArrays + "\t";
+				// Insert 2D arrays right after the array at 7.
+				dataString += dataList[i] + "\t" + newArrays + "\t";
 			}
 		}
 		
