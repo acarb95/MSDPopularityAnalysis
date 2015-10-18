@@ -57,20 +57,20 @@ class NgramNeighbors(MRJob):
 			featureArray.extend(self.getAggregations(item))
 
 		# Integers
-		featureArray.append(data[16]) #timeSignature
-		featureArray.append(data[17]) #songKey
-		featureArray.append(data[18]) #mode
+		featureArray.append(float(data[16])) #timeSignature
+		featureArray.append(float(data[17])) #songKey
+		featureArray.append(float(data[18])) #mode
 
 		# Floats
-		featureArray.append(data[19]) #startOfFadeOut
-		featureArray.append(data[20]) #duration
-		featureArray.append(data[21]) #endOfFadeIn
-		featureArray.append(data[22]) #danceability
-		featureArray.append(data[23]) #energy
-		featureArray.append(data[24]) #loudness
-		featureArray.append(data[25]) #tempo
+		featureArray.append(float(data[19])) #startOfFadeOut
+		featureArray.append(float(data[20])) #duration
+		featureArray.append(float(data[21])) #endOfFadeIn
+		featureArray.append(float(data[22])) #danceability
+		featureArray.append(float(data[23])) #energy
+		featureArray.append(float(data[24])) #loudness
+		featureArray.append(float(data[25])) #tempo
 
-		hotness = data[26] # Target value
+		hotness = float(data[26]) # Target value
 
 		# Will have 42 features (not including hotness) with an expected value of hotness. 
 		
@@ -91,7 +91,7 @@ class NgramNeighbors(MRJob):
 		data = list(datas)
 		half = len(data)//2
 		train = data[:half]
-		test = data[half+1:]
+		test = data[half:]
 		trainx, trainy = map(list, zip(*train))
 		testx, testy = map(list, zip(*test))
 		
