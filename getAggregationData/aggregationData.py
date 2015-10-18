@@ -88,8 +88,9 @@ class NgramNeighbors(MRJob):
 
 	def reducer(self, key, datas):
 		# Test on small test case to see how to use --> ideally you have test, train sets and then the transformed one to compare with
-		half = len(datas)//2
-		train = datas[:half]
+		data = list(datas)
+		half = len(data)//2
+		train = data[:half]
 		test = data[half+1:]
 		trainx, trainy = map(list, zip(*train))
 		testx, testy = map(list, zip(*test))
