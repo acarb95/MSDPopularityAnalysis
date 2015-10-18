@@ -115,10 +115,10 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 				hotness = -1.0;
 			}
 			// Create identification string
-			String identString = song_title + "\t" + artist + "\t" + latitude + "\t" + longitude + "\t" + location;
-			String feature1DString = barsStart + "\t" + beatsStart + "\t" + sectionsStart + "\t" +segmentsMaxLoudness + "\t" + segmentsMaxLoudnessTime+ "\t" + segmentsMaxLoudnessStart + "\t" + segmentsStart + "\t"+ tatumsStart;
-			String featureIntegers = timeSignature + "\t" +songKey + "\t" + mode;
-			String featureDoubles = startOfFadeOut + "\t" +duration + "\t" + endOfFadeIn + "\t" +danceability + "\t" + energy + "\t" +loudness + "\t" + tempo;
+			String identString = song_title + "|" + artist + "|" + latitude + "|" + longitude + "|" + location;
+			String feature1DString = barsStart + "|" + beatsStart + "|" + sectionsStart + "|" +segmentsMaxLoudness + "|" + segmentsMaxLoudnessTime+ "|" + segmentsMaxLoudnessStart + "|" + segmentsStart + "|"+ tatumsStart;
+			String featureIntegers = timeSignature + "|" +songKey + "|" + mode;
+			String featureDoubles = startOfFadeOut + "|" +duration + "|" + endOfFadeIn + "|" +danceability + "|" + energy + "|" +loudness + "|" + tempo;
 
 			if (hotness > 0.5 && location != null) {
 				if (countriesToGet.contains(location)) {
