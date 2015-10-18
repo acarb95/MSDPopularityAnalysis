@@ -46,10 +46,11 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 
 	protected void setup(Mapper<LongWritable, Text, Text, SongWritable>.Context context) throws IOException, InterruptedException {
 		if (context.getCacheFiles() != null && context.getCacheFiles().length > 0) {
-			URI mappingFileuri = context.getCacheFiles()[0];
+			URI mappingFileUri = context.getCacheFiles()[0];
+			URI countriesFileUri = context.getCacheFiles()[1];
 			
-			if (mappingFileuri != null) {
-				File file = new File("theFile");
+			if (mappingFileUri != null) {
+				File file = new File("theFile1");
 				
 				Scanner reader = new Scanner(file);
 				// Save into class variable
@@ -61,7 +62,21 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 
 				reader.close();
 			}
+
+			if (countriesFileUri != null) {
+				File file = new File("theFile2");
+
+				Scanner reader = new Scanner(file);
+
+				while (reader.hasNext()) {
+					String line = reader.nextLine();
+					countriesToGet.add(line.replaceAll("\\s+", ""));
+				}
+			}
 		}
+
+		// Will be easier to have a file with a list of the names and then iterate 
+		// through to add it. 
 		
 		super.setup(context);
 	}
@@ -121,9 +136,9 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			String featureDoubles = startOfFadeOut + "|" +duration + "|" + endOfFadeIn + "|" +danceability + "|" + energy + "|" +loudness + "|" + tempo;
 
 			if (hotness > 0 && location != null) {
-				//if (countriesToGet.contains(location)) {
+				if (countriesToGet.contains(location)) {
 					context.write(new Text(location), new SongWritable(identString, feature1DString, timbre, pitches, featureIntegers, featureDoubles, hotness));
-				//}
+				}
 			} 
 		}
 	}
