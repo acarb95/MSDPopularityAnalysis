@@ -78,7 +78,7 @@ class NgramNeighbors(MRJob):
 
 		yield(country, pair)
 
-	def getAggregations(array):
+	def getAggregations(self, array):
 		median = np.median(array)
 		mean = np.mean(array)
 		variance = np.var(array)
