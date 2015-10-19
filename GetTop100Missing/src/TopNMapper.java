@@ -47,7 +47,6 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 	protected void setup(Mapper<LongWritable, Text, Text, SongWritable>.Context context) throws IOException, InterruptedException {
 		if (context.getCacheFiles() != null && context.getCacheFiles().length > 0) {
 			URI mappingFileUri = context.getCacheFiles()[0];
-			URI countriesFileUri = context.getCacheFiles()[1];
 			
 			if (mappingFileUri != null) {
 				File file = new File("theFile1");
@@ -66,7 +65,11 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 
 		countriesToGet.add("GB");
 		countriesToGet.add("US");
-		
+		countriesToGet.add("CA");
+		countriesToGet.add("DE");
+		countriesToGet.add("HR");
+		countriesToGet.add("PT");
+
 		super.setup(context);
 	}
 	
@@ -120,8 +123,12 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			String featureIntegers = timeSignature + "|" +songKey + "|" + mode;
 			String featureDoubles = startOfFadeOut + "|" +duration + "|" + endOfFadeIn + "|" +danceability + "|" + energy + "|" +loudness + "|" + tempo;
 
-			if (hotness > 0.5 && location != null) {
-				if (countriesToGet.contains(location)) {
+			if (hotness > 0.25 && location != null && countriesToGet.contains(location)) {
+				if (location.equals("US") || location.equals("GB")) {
+					if (hotness > 0.5) {
+						context.write(new Text(location), new SongWritable(identString, feature1DString, featureIntegers, featureDoubles, hotness));
+					}
+				} else {
 					context.write(new Text(location), new SongWritable(identString, feature1DString, featureIntegers, featureDoubles, hotness));
 				}
 			} 

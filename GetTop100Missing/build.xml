@@ -34,7 +34,7 @@
     <mkdir dir="${dist}"/>
 
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/top100USGB.jar" basedir="${build}"/>
+    <jar jarfile="${dist}/top100Missing.jar" basedir="${build}"/>
   </target>
 
   <target name="clean"
