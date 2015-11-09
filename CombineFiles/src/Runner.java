@@ -19,7 +19,16 @@ public class Runner {
 			while(reader.hasNext()) {
 				String line = reader.nextLine();
 				String[] splitLine = line.split("\t");
-				top40Songs.put(splitLine[0], splitLine[1]);
+				String generatedData = "";
+				String ident = splitLine[1] + "|" + splitLine[2] + "|" + splitLine[3] + "|" + splitLine[4] + "|" + splitLine[0];
+				for (int i = 0; i < splitLine.length; i++) {
+					if (i == splitLine.length - 1) {
+						generatedData += splitLine[i];
+					} else {
+						generatedData += splitLine[i] + "\t";
+					}
+				}
+				top40Songs.put(ident, generatedData);
 			}
 			
 			reader.close();
@@ -41,8 +50,13 @@ public class Runner {
 		while (reader.hasNext()) {
 			String line = reader.nextLine();
 			String[] split = line.split("\t");
-			if (top40Songs.containsKey(split[0])) {		
-				String outputString = getLocation(split[0]) + "\t" + split[0].replaceAll("[|]", "\t") + "\t" + insert2DArrays(split[1], top40Songs.get(split[0]));
+			if (top40Songs.containsKey(split[0])) {
+				String outputString = "";
+				if (getLocation(split[0]).equals("US")) {
+					outputString = top40Songs.get(split[0]).trim() + "\t" + split[1];
+				} else {
+					outputString = getLocation(split[0]) + "\t" + split[0].replaceAll("[|]", "\t") + "\t" + insert2DArrays(split[1], top40Songs.get(split[0]));
+				}
 				finishedSongs.put(split[0], outputString);
 			}
 		}
@@ -62,9 +76,6 @@ public class Runner {
 	
 	private static String insert2DArrays(String arrays, String data) {
 		String[] dataList = data.split("[|]");
-		String[] split = arrays.split("[|]");
-		String timbre = split[0];
-		String pitch = split[1];
 		String newArrays = arrays.replaceAll("[|]", "\t");
 		
 		String dataString = "";

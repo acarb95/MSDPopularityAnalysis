@@ -17,8 +17,10 @@ public class Fix2DArrays {
 		
 		if (inDir.isDirectory()) {
 			for (File file : inDir.listFiles()) {
-				if (!file.isDirectory() && file.getName().endsWith(".txt")) {
-					convertFile(file, new File(outDir, file.getName()));
+				if (!file.isDirectory() && file.getName().contains("-r-")) {
+					String newFilename = file.getName().split("-")[0] + ".txt";
+					System.out.println("Converting " + file.getName() + " to " + newFilename);
+					convertFile(file, new File(outDir, newFilename));
 				}
 			}
 		} else {
