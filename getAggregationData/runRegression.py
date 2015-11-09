@@ -63,6 +63,7 @@ def getDataset(lines, indexes = None):
 def getPair(line, indexes = None):
 	featureArray = []
 	data = filter(None, line.strip().split('\t'))
+	print len(data)
 	for i in range(6, 14):
 		featureArray.extend(getAggregations(np.fromstring(data[i].strip("[]"), sep=', ')))
 	# 2D arrays

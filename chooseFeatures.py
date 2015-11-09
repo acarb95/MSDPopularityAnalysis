@@ -17,11 +17,14 @@ def getFeatures(lines):
 		arrays.append("timbre" + str(i))
 
 	for item in arrays:
-		newFeatureValue = max(features[item + "Median"], features[item + "Mean"], features[item + "Variance"], features[item + "Range"])
-		newFeature = inv_features[newFeatureValue]
-		newFeatures.append(newFeature)
+		try:
+			newFeatureValue = max(features[item + "Median"], features[item + "Mean"], features[item + "Variance"], features[item + "Range"])
+			newFeature = inv_features[newFeatureValue]
+			newFeatures.append(newFeature)
+		except Exception:
+			pass
 
-	other_features = ["timeSignature", "songKey", "mode", "startOfFadeOut", "duration", "endOfFadeIn", "danceability", "energy", "loudness", "tempo"]
+	other_features = ["timeSignature", "songKey", "mode", "startOfFadeOut", "duration", "endOfFadeIn", "loudness", "tempo"]
 
 	for feature in other_features:
 		newFeatures.append(feature)
@@ -30,7 +33,7 @@ def getFeatures(lines):
 
 def outputFeatures(newFeatures, output):
 	for feature in newFeatures:
-		output.write(feature[0] + "\n")
+		output.write(feature + "\n")
 
 if __name__ == '__main__':
 	dataDir = os.path.abspath(sys.argv[1])
