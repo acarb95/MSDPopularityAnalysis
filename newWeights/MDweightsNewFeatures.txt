@@ -19,7 +19,6 @@ segmentsStartMean
 segmentsStartMean
 timeSignature
 songKey
-mode
 startOfFadeOut
 duration
 endOfFadeIn

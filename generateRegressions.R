@@ -9,6 +9,8 @@ countryFile <- args[1]
 
 res <- readLines(countryFile)
 
+countries <- list()
+
 for (i in 1:length(res)) {
 	country <- res[i]
 	files <- paste("./testOutput", paste(country, ".csv", sep=""), sep="/")
@@ -17,6 +19,15 @@ for (i in 1:length(res)) {
 
 	dat <- read.csv(files, header=TRUE)
 	attach(dat)
+
+	result1 <- tryCatch({
+		newWeights <- readLines(paste("./newWeights", paste(country, "weightsNewFeatures.txt", sep=""), sep="/"))
+		f <- as.simple.formula(newWeights, "hotness")
+	}, warning = function(war) {
+		f <- as.simple.formula(".", "hotness")
+	}, error = function(error) {
+		f <- as.simple.formula(".", "hotness")
+	})
 
 	if (!exists("f")) f <- as.simple.formula(".", "hotness")
 
@@ -38,18 +49,20 @@ for (i in 1:length(res)) {
 
 	if (!exists("finalStep")) finalStep <- result2
 
-	assign(country, rstudent(finalStep))
+	print(finalStep$residuals)
 
-	output <- paste("./summaries", paste(country, "Summary.txt", sep=""), sep="/")
+	countries[[i]] <- finalStep$residuals
 
-	sink(output)
-	summary(finalStep)
-	sink()
+	#output <- paste("./summaries", paste(country, "Summary.txt", sep=""), sep="/")
+
+	#sink(output)
+	#summary(finalStep)
+	#sink()
+	detach(dat)
 }
 
-dataList <- lapply(res, get, envir=environment())
-names(dataList) <- res
+names(countries) <- res
 
-print(dataList)
+print(countries)
 
-boxplot(dataList)
+boxplot(countries)
