@@ -68,10 +68,10 @@ for (i in 1:length(res)) {
 	detach(dat)
 }
 
-#names(countries) <- res
+names(countries) <- res
 
 #print(countries)
 
-#pdf("CountryResiduals.pdf")
-#boxplot(countries, main="Country Residual Comparison Plot",xlab="Country",ylab="Studentized Residuals")
-#def.off()
+pdf("CountryResiduals.pdf", width = 11, height = 8.5)
+boxplot(countries, main="Country Residual Comparison Plot",xlab="Country",ylab="Studentized Residuals")
+dev.off()
