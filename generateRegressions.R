@@ -59,8 +59,8 @@ for (i in 1:length(res)) {
 	#summary(finalStep)
 	#sink()
 
-	pdf(paste(country, "Residuals.pdf", sep=""), width = 11, height = 8.5)
-	plot(predict(finalStep),finalStep$residuals,main="Residual Plot",xlab="Y-hat",ylab="Studentized Deleted")
+	pdf(paste("./residuals", paste(country, "Residuals.pdf", sep=""), sep="/"), width = 11, height = 8.5)
+	plot(predict(finalStep),finalStep$residuals,main=paste(country, "Residual Plot"),xlab="Y-hat",ylab="Studentized Deleted")
 	abline(h=0,lty=2)
 	lines(supsmu(predict(finalStep),finalStep$residuals),col=2)
 	dev.off()
