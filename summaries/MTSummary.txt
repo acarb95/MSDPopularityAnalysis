@@ -1,0 +1,45 @@
+
+Call:
+lm(formula = hotness ~ barsStartMedian + beatsStartMedian + segmentsMaxLoudnessRange + 
+    segmentsStartRange + pitch0Range + pitch1Range + timbre1Median + 
+    pitch2Range + pitch4Range + timbre4Mean + timbre5Mean + pitch6Variance + 
+    timbre7Variance + pitch8Variance + pitch9Median + pitch10Variance + 
+    timbre10Mean + pitch11Range + timeSignature + endOfFadeIn + 
+    loudness + tempo, data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.07608 -0.28235 -0.06304  0.27020  1.24126 
+
+Coefficients:
+                           Estimate Std. Error t value Pr(>|t|)    
+(Intercept)              -7.887e-16  8.080e-02   0.000 1.000000    
+barsStartMedian           7.317e+00  3.173e+00   2.306 0.028720 *  
+beatsStartMedian          2.755e+00  1.878e+00   1.467 0.153543    
+segmentsMaxLoudnessRange -2.899e-01  1.122e-01  -2.583 0.015294 *  
+segmentsStartRange       -1.003e+01  3.292e+00  -3.046 0.005009 ** 
+pitch0Range               3.943e-01  1.451e-01   2.718 0.011139 *  
+pitch1Range              -3.015e-01  1.329e-01  -2.269 0.031152 *  
+timbre1Median             4.845e-01  1.179e-01   4.111 0.000312 ***
+pitch2Range              -1.999e-01  1.108e-01  -1.804 0.081982 .  
+pitch4Range              -2.480e-01  1.374e-01  -1.804 0.081988 .  
+timbre4Mean              -2.142e-01  1.739e-01  -1.232 0.228310    
+timbre5Mean              -2.151e-01  1.496e-01  -1.437 0.161738    
+pitch6Variance           -3.016e-01  1.297e-01  -2.325 0.027566 *  
+timbre7Variance           2.755e-01  1.533e-01   1.798 0.083036 .  
+pitch8Variance           -3.283e-01  1.191e-01  -2.756 0.010186 *  
+pitch9Median             -1.926e-01  1.699e-01  -1.133 0.266630    
+pitch10Variance          -2.622e-01  1.179e-01  -2.224 0.034359 *  
+timbre10Mean              2.119e-01  1.360e-01   1.558 0.130412    
+pitch11Range              3.204e-01  1.547e-01   2.071 0.047649 *  
+timeSignature             1.963e-01  1.263e-01   1.554 0.131347    
+endOfFadeIn               1.292e-01  1.107e-01   1.168 0.252831    
+loudness                 -2.060e-01  1.110e-01  -1.855 0.074166 .  
+tempo                    -1.300e-01  1.106e-01  -1.175 0.249891    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.577 on 28 degrees of freedom
+Multiple R-squared:  0.8135,	Adjusted R-squared:  0.667 
+F-statistic: 5.553 on 22 and 28 DF,  p-value: 1.798e-05
+

@@ -1,0 +1,40 @@
+
+Call:
+lm(formula = hotness ~ barsStartVariance + segmentsMaxLoudnessVariance + 
+    segmentsMaxLoudnessTimeMean + segmentsStartVariance + timbre0Variance + 
+    timbre1Range + pitch2Mean + timbre3Mean + timbre4Mean + pitch5Range + 
+    pitch7Range + pitch8Range + timbre8Range + pitch9Range + 
+    timbre9Variance + pitch10Variance + songKey + tempo, data = scaled.dat)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.1960 -0.4555 -0.0749  0.3543  2.3433 
+
+Coefficients:
+                              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                  4.277e-16  7.204e-02   0.000  1.00000    
+barsStartVariance           -2.200e+00  1.037e+00  -2.121  0.03708 *  
+segmentsMaxLoudnessVariance  6.431e-01  2.707e-01   2.375  0.01995 *  
+segmentsMaxLoudnessTimeMean  3.565e-01  1.537e-01   2.319  0.02299 *  
+segmentsStartVariance        2.059e+00  1.019e+00   2.021  0.04667 *  
+timbre0Variance             -6.718e-01  2.580e-01  -2.604  0.01101 *  
+timbre1Range                 2.939e-01  1.224e-01   2.401  0.01869 *  
+pitch2Mean                  -2.792e-01  1.066e-01  -2.620  0.01055 *  
+timbre3Mean                 -1.899e-01  1.144e-01  -1.660  0.10084    
+timbre4Mean                 -4.394e-01  1.019e-01  -4.312 4.63e-05 ***
+pitch5Range                 -2.472e-01  1.229e-01  -2.012  0.04768 *  
+pitch7Range                  3.146e-01  1.161e-01   2.711  0.00823 ** 
+pitch8Range                  3.496e-01  1.443e-01   2.422  0.01773 *  
+timbre8Range                -2.181e-01  1.069e-01  -2.040  0.04465 *  
+pitch9Range                 -3.389e-01  1.434e-01  -2.364  0.02053 *  
+timbre9Variance             -2.040e-01  1.193e-01  -1.710  0.09112 .  
+pitch10Variance             -2.173e-01  9.832e-02  -2.210  0.03003 *  
+songKey                     -1.546e-01  7.975e-02  -1.938  0.05617 .  
+tempo                       -2.161e-01  7.995e-02  -2.703  0.00841 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7132 on 79 degrees of freedom
+Multiple R-squared:  0.5858,	Adjusted R-squared:  0.4914 
+F-statistic: 6.207 on 18 and 79 DF,  p-value: 4.203e-09
+

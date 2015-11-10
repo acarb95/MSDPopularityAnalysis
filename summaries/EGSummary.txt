@@ -1,0 +1,38 @@
+
+Call:
+lm(formula = hotness ~ beatsStartVariance + sectionsStartVariance + 
+    segmentsMaxLoudnessTimeRange + segmentsMaxLoudnessStartMean + 
+    timbre0Median + pitch2Median + pitch4Mean + timbre4Range + 
+    timbre5Range + pitch7Range + timbre8Median + timbre9Range + 
+    pitch10Range + timbre11Median + mode + duration, data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.86551 -0.50333 -0.01408  0.50222  1.80325 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                   2.022e-16  8.345e-02   0.000 1.000000    
+beatsStartVariance           -1.629e+00  6.224e-01  -2.617 0.010584 *  
+sectionsStartVariance         7.177e-01  4.512e-01   1.591 0.115614    
+segmentsMaxLoudnessTimeRange -2.050e-01  1.054e-01  -1.944 0.055377 .  
+segmentsMaxLoudnessStartMean  6.630e-01  3.265e-01   2.031 0.045574 *  
+timbre0Median                -1.149e+00  3.459e-01  -3.320 0.001351 ** 
+pitch2Median                  2.775e-01  1.250e-01   2.220 0.029205 *  
+pitch4Mean                    1.929e-01  1.071e-01   1.801 0.075436 .  
+timbre4Range                 -3.085e-01  9.992e-02  -3.087 0.002768 ** 
+timbre5Range                  2.352e-01  1.037e-01   2.269 0.025955 *  
+pitch7Range                  -1.842e-01  1.140e-01  -1.615 0.110179    
+timbre8Median                -3.619e-01  9.459e-02  -3.826 0.000255 ***
+timbre9Range                 -1.461e-01  1.056e-01  -1.383 0.170398    
+pitch10Range                 -1.598e-01  1.109e-01  -1.441 0.153514    
+timbre11Median               -1.605e-01  9.408e-02  -1.706 0.091816 .  
+mode                         -1.259e-01  8.844e-02  -1.423 0.158567    
+duration                      1.041e+00  5.532e-01   1.882 0.063379 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8261 on 81 degrees of freedom
+Multiple R-squared:  0.4301,	Adjusted R-squared:  0.3175 
+F-statistic:  3.82 on 16 and 81 DF,  p-value: 3.042e-05
+

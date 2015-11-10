@@ -1,0 +1,34 @@
+
+Call:
+lm(formula = hotness ~ barsStartRange + segmentsMaxLoudnessRange + 
+    segmentsStartMedian + tatumsStartRange + timbre0Range + pitch2Median + 
+    pitch3Range + timbre9Variance + pitch10Range + mode + duration + 
+    endOfFadeIn + timbre3Range, data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.42503 -0.54572 -0.04991  0.40735  2.10869 
+
+Coefficients:
+                           Estimate Std. Error t value Pr(>|t|)    
+(Intercept)              -2.948e-16  8.062e-02   0.000 1.000000    
+barsStartRange           -5.354e+00  1.918e+00  -2.791 0.006474 ** 
+segmentsMaxLoudnessRange -6.414e-01  1.933e-01  -3.318 0.001332 ** 
+segmentsStartMedian       9.097e-01  3.312e-01   2.746 0.007336 ** 
+tatumsStartRange          9.074e+00  2.683e+00   3.382 0.001086 ** 
+timbre0Range              5.074e-01  2.149e-01   2.362 0.020454 *  
+pitch2Median             -2.197e-01  9.382e-02  -2.341 0.021525 *  
+pitch3Range              -2.665e-01  9.128e-02  -2.919 0.004476 ** 
+timbre9Variance          -3.955e-01  9.761e-02  -4.051 0.000111 ***
+pitch10Range              1.878e-01  8.729e-02   2.151 0.034287 *  
+mode                      1.910e-01  8.567e-02   2.229 0.028423 *  
+duration                 -4.458e+00  1.655e+00  -2.694 0.008488 ** 
+endOfFadeIn              -2.645e-01  9.099e-02  -2.907 0.004646 ** 
+timbre3Range             -1.299e-01  8.964e-02  -1.449 0.150846    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8062 on 86 degrees of freedom
+Multiple R-squared:  0.4355,	Adjusted R-squared:  0.3501 
+F-statistic: 5.103 on 13 and 86 DF,  p-value: 1.284e-06
+

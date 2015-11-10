@@ -1,0 +1,49 @@
+
+Call:
+lm(formula = hotness ~ barsStartRange + beatsStartRange + segmentsMaxLoudnessMedian + 
+    segmentsStartMean + tatumsStartRange + pitch0Range + pitch1Range + 
+    timbre1Range + pitch2Variance + pitch4Range + timbre4Variance + 
+    pitch5Variance + pitch6Range + pitch7Median + timbre7Range + 
+    pitch8Variance + timbre9Median + pitch10Range + pitch11Variance + 
+    timbre11Median + timeSignature + startOfFadeOut + duration + 
+    endOfFadeIn + loudness, data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.09490 -0.14316  0.02642  0.20421  0.48403 
+
+Coefficients:
+                            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                3.132e-15  5.712e-02   0.000 1.000000    
+barsStartRange             1.059e+01  4.077e+00   2.597 0.014445 *  
+beatsStartRange            6.190e+01  3.986e+01   1.553 0.130917    
+segmentsMaxLoudnessMedian -5.693e-01  2.885e-01  -1.973 0.057716 .  
+segmentsStartMean         -2.015e+00  9.337e-01  -2.158 0.039054 *  
+tatumsStartRange          -7.704e+01  3.983e+01  -1.934 0.062553 .  
+pitch0Range                1.405e-01  8.627e-02   1.628 0.113892    
+pitch1Range                1.733e-01  9.261e-02   1.871 0.071124 .  
+timbre1Range              -4.261e-01  1.338e-01  -3.186 0.003359 ** 
+pitch2Variance            -1.134e-01  1.002e-01  -1.132 0.266789    
+pitch4Range                1.208e-01  9.375e-02   1.289 0.207291    
+timbre4Variance            3.618e-01  1.160e-01   3.120 0.003980 ** 
+pitch5Variance             2.108e-01  8.605e-02   2.449 0.020377 *  
+pitch6Range                2.985e-01  1.294e-01   2.306 0.028194 *  
+pitch7Median              -3.014e-01  8.129e-02  -3.708 0.000847 ***
+timbre7Range               1.558e-01  1.048e-01   1.487 0.147576    
+pitch8Variance             3.981e-01  8.997e-02   4.425 0.000117 ***
+timbre9Median             -2.334e-01  9.177e-02  -2.544 0.016351 *  
+pitch10Range              -3.893e-01  1.344e-01  -2.896 0.006988 ** 
+pitch11Variance            1.162e-01  8.085e-02   1.438 0.160920    
+timbre11Median             9.585e-02  9.015e-02   1.063 0.296160    
+timeSignature              4.297e-01  9.959e-02   4.315 0.000160 ***
+startOfFadeOut            -2.490e+00  1.348e+00  -1.847 0.074611 .  
+duration                   8.770e+00  4.378e+00   2.003 0.054269 .  
+endOfFadeIn                1.850e-01  8.717e-02   2.122 0.042181 *  
+loudness                   1.304e+00  2.993e-01   4.357 0.000142 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4275 on 30 degrees of freedom
+Multiple R-squared:  0.9003,	Adjusted R-squared:  0.8173 
+F-statistic: 10.84 on 25 and 30 DF,  p-value: 3.599e-09
+

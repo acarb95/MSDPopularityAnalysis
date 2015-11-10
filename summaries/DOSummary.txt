@@ -1,0 +1,40 @@
+
+Call:
+lm(formula = hotness ~ beatsStartVariance + sectionsStartMean + 
+    segmentsMaxLoudnessRange + segmentsMaxLoudnessStartMedian + 
+    segmentsStartVariance + tatumsStartVariance + pitch2Mean + 
+    pitch4Median + timbre4Variance + timbre5Range + timbre6Median + 
+    pitch10Range + pitch11Variance + startOfFadeOut + duration + 
+    loudness + tempo, data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.86544 -0.33076 -0.04636  0.48286  1.94741 
+
+Coefficients:
+                                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                     8.733e-15  7.388e-02   0.000 1.000000    
+beatsStartVariance              4.786e+01  3.089e+01   1.549 0.125225    
+sectionsStartMean               4.478e-01  2.647e-01   1.692 0.094481 .  
+segmentsMaxLoudnessRange       -2.108e-01  8.621e-02  -2.446 0.016596 *  
+segmentsMaxLoudnessStartMedian -5.021e-01  2.255e-01  -2.227 0.028701 *  
+segmentsStartVariance          -1.134e+00  7.880e-01  -1.440 0.153800    
+tatumsStartVariance            -4.617e+01  3.077e+01  -1.500 0.137348    
+pitch2Mean                     -3.062e-01  8.791e-02  -3.483 0.000798 ***
+pitch4Median                    2.870e-01  1.001e-01   2.868 0.005244 ** 
+timbre4Variance                -3.070e-01  1.018e-01  -3.017 0.003404 ** 
+timbre5Range                   -1.790e-01  8.978e-02  -1.994 0.049498 *  
+timbre6Median                  -2.383e-01  9.375e-02  -2.542 0.012905 *  
+pitch10Range                    1.770e-01  9.800e-02   1.806 0.074596 .  
+pitch11Variance                -3.734e-01  8.363e-02  -4.464 2.54e-05 ***
+startOfFadeOut                  4.314e+00  1.591e+00   2.711 0.008161 ** 
+duration                       -5.268e+00  1.598e+00  -3.297 0.001446 ** 
+loudness                        4.993e-01  2.184e-01   2.287 0.024795 *  
+tempo                          -1.162e-01  8.247e-02  -1.409 0.162672    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7388 on 82 degrees of freedom
+Multiple R-squared:  0.5479,	Adjusted R-squared:  0.4542 
+F-statistic: 5.846 on 17 and 82 DF,  p-value: 1.73e-08
+

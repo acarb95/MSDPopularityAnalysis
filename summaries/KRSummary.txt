@@ -1,0 +1,36 @@
+
+Call:
+lm(formula = hotness ~ barsStartVariance + segmentsMaxLoudnessStartRange + 
+    segmentsStartMedian + tatumsStartVariance + timbre1Mean + 
+    pitch3Mean + pitch4Variance + pitch6Median + pitch8Mean + 
+    timbre8Variance + pitch10Mean + songKey + startOfFadeOut + 
+    endOfFadeIn, data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.50371 -0.43790 -0.01914  0.37923  2.03795 
+
+Coefficients:
+                                Estimate Std. Error t value Pr(>|t|)   
+(Intercept)                   -3.239e-16  8.712e-02   0.000  1.00000   
+barsStartVariance              5.589e+00  3.700e+00   1.511  0.13538   
+segmentsMaxLoudnessStartRange  2.665e-01  1.109e-01   2.403  0.01893 * 
+segmentsStartMedian            7.863e-01  2.929e-01   2.685  0.00905 **
+tatumsStartVariance           -5.125e+00  3.766e+00  -1.361  0.17795   
+timbre1Mean                   -2.830e-01  1.278e-01  -2.215  0.03004 * 
+pitch3Mean                     1.648e-01  1.229e-01   1.340  0.18445   
+pitch4Variance                -3.093e-01  9.216e-02  -3.356  0.00128 **
+pitch6Median                   1.971e-01  1.183e-01   1.666  0.10022   
+pitch8Mean                    -2.909e-01  1.349e-01  -2.156  0.03454 * 
+timbre8Variance                2.525e-01  9.711e-02   2.600  0.01137 * 
+pitch10Mean                    3.407e-01  1.305e-01   2.612  0.01102 * 
+songKey                       -1.911e-01  9.804e-02  -1.949  0.05533 . 
+startOfFadeOut                -1.183e+00  5.637e-01  -2.099  0.03941 * 
+endOfFadeIn                   -1.674e-01  1.025e-01  -1.634  0.10676   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8032 on 70 degrees of freedom
+Multiple R-squared:  0.4624,	Adjusted R-squared:  0.3549 
+F-statistic: 4.301 on 14 and 70 DF,  p-value: 1.987e-05
+

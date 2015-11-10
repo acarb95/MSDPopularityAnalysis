@@ -1,0 +1,32 @@
+
+Call:
+lm(formula = hotness ~ segmentsMaxLoudnessStartMedian + segmentsStartRange + 
+    tatumsStartRange + pitch0Mean + timbre4Median + timbre5Mean + 
+    pitch7Range + pitch10Range + pitch11Mean + songKey + duration, 
+    data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.94803 -0.40324  0.02273  0.36745  1.32321 
+
+Coefficients:
+                                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                    -1.531e-15  7.220e-02   0.000 1.000000    
+segmentsMaxLoudnessStartMedian -3.046e-01  1.295e-01  -2.351 0.021232 *  
+segmentsStartRange             -1.338e+01  7.365e+00  -1.817 0.073087 .  
+tatumsStartRange                1.618e+01  6.544e+00   2.473 0.015572 *  
+pitch0Mean                     -1.647e-01  8.314e-02  -1.982 0.051052 .  
+timbre4Median                  -4.285e-01  1.081e-01  -3.964 0.000162 ***
+timbre5Mean                    -5.535e-01  1.211e-01  -4.569  1.8e-05 ***
+pitch7Range                     3.856e-01  9.549e-02   4.039 0.000125 ***
+pitch10Range                   -1.789e-01  9.292e-02  -1.926 0.057783 .  
+pitch11Mean                     1.987e-01  8.666e-02   2.293 0.024537 *  
+songKey                        -1.331e-01  7.723e-02  -1.723 0.088784 .  
+duration                       -2.761e+00  2.046e+00  -1.349 0.181207    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.6849 on 78 degrees of freedom
+Multiple R-squared:  0.5888,	Adjusted R-squared:  0.5308 
+F-statistic: 10.15 on 11 and 78 DF,  p-value: 3.31e-11
+

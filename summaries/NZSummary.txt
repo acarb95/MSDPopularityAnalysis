@@ -1,0 +1,35 @@
+
+Call:
+lm(formula = hotness ~ beatsStartMedian + segmentsMaxLoudnessTimeMean + 
+    timbre1Variance + pitch3Median + timbre3Variance + timbre4Range + 
+    pitch5Range + timbre5Variance + timbre8Variance + pitch9Mean + 
+    pitch10Variance + timbre10Variance + songKey + tempo, data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.46290 -0.46697 -0.05652  0.46814  2.21009 
+
+Coefficients:
+                              Estimate Std. Error t value Pr(>|t|)   
+(Intercept)                  7.903e-16  8.125e-02   0.000  1.00000   
+beatsStartMedian            -2.276e-01  1.123e-01  -2.027  0.04584 * 
+segmentsMaxLoudnessTimeMean  4.024e-01  1.301e-01   3.093  0.00268 **
+timbre1Variance              2.571e-01  1.259e-01   2.042  0.04429 * 
+pitch3Median                -3.029e-01  1.019e-01  -2.972  0.00384 **
+timbre3Variance              4.179e-01  1.952e-01   2.141  0.03512 * 
+timbre4Range                 3.118e-01  1.273e-01   2.449  0.01638 * 
+pitch5Range                 -2.577e-01  8.782e-02  -2.934  0.00430 **
+timbre5Variance              3.824e-01  2.462e-01   1.553  0.12404   
+timbre8Variance             -4.636e-01  1.617e-01  -2.866  0.00523 **
+pitch9Mean                  -1.526e-01  1.017e-01  -1.501  0.13697   
+pitch10Variance              2.615e-01  1.013e-01   2.582  0.01153 * 
+timbre10Variance            -4.329e-01  2.765e-01  -1.565  0.12119   
+songKey                     -1.238e-01  9.243e-02  -1.339  0.18402   
+tempo                        1.224e-01  8.974e-02   1.364  0.17627   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8125 on 85 degrees of freedom
+Multiple R-squared:  0.4333,	Adjusted R-squared:  0.3399 
+F-statistic: 4.641 on 14 and 85 DF,  p-value: 3.465e-06
+

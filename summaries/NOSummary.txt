@@ -1,0 +1,29 @@
+
+Call:
+lm(formula = hotness ~ pitch1Median + timbre1Mean + pitch2Mean + 
+    pitch5Variance + timbre5Range + pitch11Range + startOfFadeOut + 
+    duration + tempo, data = scaled.dat)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.8977 -0.5962 -0.1604  0.5120  2.0062 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    -1.762e-15  8.607e-02   0.000 1.000000    
+pitch1Median    3.793e-01  1.033e-01   3.671 0.000409 ***
+timbre1Mean    -1.609e-01  1.067e-01  -1.508 0.134938    
+pitch2Mean     -1.760e-01  9.831e-02  -1.791 0.076734 .  
+pitch5Variance  1.874e-01  9.007e-02   2.081 0.040305 *  
+timbre5Range    3.434e-01  9.340e-02   3.677 0.000401 ***
+pitch11Range    1.286e-01  9.274e-02   1.387 0.168922    
+startOfFadeOut -2.161e+00  9.937e-01  -2.175 0.032271 *  
+duration        2.050e+00  9.926e-01   2.065 0.041788 *  
+tempo           1.621e-01  9.151e-02   1.771 0.079932 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8607 on 90 degrees of freedom
+Multiple R-squared:  0.3265,	Adjusted R-squared:  0.2592 
+F-statistic: 4.848 on 9 and 90 DF,  p-value: 2.742e-05
+

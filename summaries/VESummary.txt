@@ -1,0 +1,44 @@
+
+Call:
+lm(formula = hotness ~ barsStartRange + beatsStartRange + sectionsStartRange + 
+    segmentsMaxLoudnessVariance + segmentsMaxLoudnessTimeMedian + 
+    segmentsMaxLoudnessStartVariance + timbre0Variance + timbre3Median + 
+    pitch4Variance + timbre4Range + pitch5Median + timbre5Median + 
+    pitch6Median + pitch7Range + timbre7Median + timbre8Range + 
+    timbre10Range + timbre11Variance + endOfFadeIn + loudness, 
+    data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.02353 -0.25708  0.01139  0.28915  1.86682 
+
+Coefficients:
+                                   Estimate Std. Error t value Pr(>|t|)   
+(Intercept)                       1.641e-15  8.398e-02   0.000  1.00000   
+barsStartRange                    1.253e+01  3.689e+00   3.397  0.00126 **
+beatsStartRange                  -1.190e+01  3.678e+00  -3.236  0.00204 **
+sectionsStartRange               -6.431e-01  4.085e-01  -1.574  0.12104   
+segmentsMaxLoudnessVariance       1.132e+00  5.752e-01   1.968  0.05404 . 
+segmentsMaxLoudnessTimeMedian    -2.271e-01  1.759e-01  -1.291  0.20208   
+segmentsMaxLoudnessStartVariance  5.111e-01  3.014e-01   1.695  0.09557 . 
+timbre0Variance                  -1.572e+00  7.509e-01  -2.094  0.04080 * 
+timbre3Median                    -2.706e-01  1.467e-01  -1.845  0.07038 . 
+pitch4Variance                    2.144e-01  1.005e-01   2.134  0.03724 * 
+timbre4Range                     -3.472e-01  1.508e-01  -2.302  0.02506 * 
+pitch5Median                      4.168e-01  1.442e-01   2.891  0.00545 **
+timbre5Median                     3.347e-01  1.250e-01   2.678  0.00970 **
+pitch6Median                     -3.924e-01  1.378e-01  -2.848  0.00614 **
+pitch7Range                      -1.683e-01  1.132e-01  -1.486  0.14289   
+timbre7Median                     3.148e-01  1.087e-01   2.896  0.00538 **
+timbre8Range                      3.099e-01  1.296e-01   2.391  0.02017 * 
+timbre10Range                    -4.777e-01  1.580e-01  -3.024  0.00376 **
+timbre11Variance                  2.387e-01  1.179e-01   2.025  0.04760 * 
+endOfFadeIn                      -1.686e-01  1.040e-01  -1.620  0.11083   
+loudness                          3.207e-01  1.387e-01   2.313  0.02445 * 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.737 on 56 degrees of freedom
+Multiple R-squared:  0.5998,	Adjusted R-squared:  0.4569 
+F-statistic: 4.197 on 20 and 56 DF,  p-value: 1.14e-05
+

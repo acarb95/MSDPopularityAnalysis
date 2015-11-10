@@ -1,0 +1,37 @@
+
+Call:
+lm(formula = hotness ~ barsStartVariance + beatsStartVariance + 
+    sectionsStartMedian + segmentsMaxLoudnessStartMedian + segmentsStartMedian + 
+    tatumsStartVariance + timbre0Median + timbre1Median + pitch3Range + 
+    timbre3Mean + timbre4Variance + pitch6Range + pitch8Range + 
+    timbre11Variance + mode, data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.49174 -0.48749 -0.05951  0.40450  2.63874 
+
+Coefficients:
+                                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                    -2.565e-14  7.744e-02   0.000  1.00000    
+barsStartVariance              -7.298e+00  2.983e+00  -2.447  0.01650 *  
+beatsStartVariance              9.208e+01  3.283e+01   2.804  0.00626 ** 
+sectionsStartMedian             2.261e-01  1.449e-01   1.561  0.12224    
+segmentsMaxLoudnessStartMedian -1.014e+00  5.139e-01  -1.972  0.05187 .  
+segmentsStartMedian             4.300e-01  2.467e-01   1.743  0.08500 .  
+tatumsStartVariance            -8.529e+01  3.181e+01  -2.681  0.00882 ** 
+timbre0Median                   1.165e+00  5.352e-01   2.177  0.03225 *  
+timbre1Median                  -2.616e-01  1.552e-01  -1.685  0.09570 .  
+pitch3Range                     1.634e-01  8.502e-02   1.922  0.05794 .  
+timbre3Mean                     3.407e-01  1.049e-01   3.247  0.00168 ** 
+timbre4Variance                -2.697e-01  1.097e-01  -2.459  0.01599 *  
+pitch6Range                    -3.996e-01  9.088e-02  -4.397 3.19e-05 ***
+pitch8Range                     3.106e-01  9.437e-02   3.291  0.00146 ** 
+timbre11Variance               -2.045e-01  1.073e-01  -1.907  0.05994 .  
+mode                            1.675e-01  9.187e-02   1.823  0.07188 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7744 on 84 degrees of freedom
+Multiple R-squared:  0.4911,	Adjusted R-squared:  0.4003 
+F-statistic: 5.405 on 15 and 84 DF,  p-value: 1.82e-07
+

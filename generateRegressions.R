@@ -4,6 +4,10 @@ library(mlbench)
 library(FSelector)
 library(tools)
 
+SUMMARIES <- TRUE
+RESIDUALS <- FALSE
+ALLRESIDUALS <- FALSE
+
 args <- commandArgs(trailingOnly = TRUE)
 countryFile <- args[1]
 
@@ -15,7 +19,7 @@ for (i in 1:length(res)) {
 	country <- res[i]
 	files <- paste("./testOutput", paste(country, ".csv", sep=""), sep="/")
 
-	print(paste("Generating summary for ", files))
+	print(paste("Generating Regression for ", files))
 
 	dat <- read.csv(files, header=TRUE)
 	attach(dat)
@@ -53,17 +57,23 @@ for (i in 1:length(res)) {
 
 	countries[[i]] <- finalStep$residuals
 
-	#output <- paste("./summaries", paste(country, "Summary.txt", sep=""), sep="/")
+	if (SUMMARIES) {
+      output <- paste("./summaries", paste(country, "Summary.txt", sep=""),     sep="/")
+		print(paste("Printing summary to", output))
 
-	#sink(output)
-	#summary(finalStep)
-	#sink()
+		sink(output)
+		print(summary(finalStep))
+		sink()
+	}
 
-	pdf(paste("./residuals", paste(country, "Residuals.pdf", sep=""), sep="/"), width = 11, height = 8.5)
-	plot(predict(finalStep),finalStep$residuals,main=paste(country, "Residual Plot"),xlab="Y-hat",ylab="Studentized Deleted")
-	abline(h=0,lty=2)
-	lines(supsmu(predict(finalStep),finalStep$residuals),col=2)
-	dev.off()
+	if (RESIDUALS) {
+		print("Creating residuals plot and saving")
+		pdf(paste("./residuals", paste(country, "Residuals.pdf", sep=""), sep="/"), width = 11, height = 8.5)
+		plot(predict(finalStep),finalStep$residuals,main=paste(country, "Residual Plot"),xlab="Y-hat",ylab="Studentized Deleted")
+		abline(h=0,lty=2)
+		lines(supsmu(predict(finalStep),finalStep$residuals),col=2)
+		dev.off()
+	}
 
 	detach(dat)
 }
@@ -72,6 +82,9 @@ names(countries) <- res
 
 #print(countries)
 
-pdf("CountryResiduals.pdf", width = 11, height = 8.5)
-boxplot(countries, main="Country Residual Comparison Plot",xlab="Country",ylab="Studentized Residuals")
-dev.off()
+if (ALLRESIDUALS) {
+	print("Creating overall residuals comparison plot")
+	pdf("CountryResiduals.pdf", width = 11, height = 8.5)
+	boxplot(countries, main="Country Residual Comparison Plot",xlab="Country",ylab="Studentized Residuals")
+	dev.off()
+}

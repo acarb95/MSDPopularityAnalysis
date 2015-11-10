@@ -1,0 +1,41 @@
+
+Call:
+lm(formula = hotness ~ barsStartVariance + segmentsMaxLoudnessRange + 
+    segmentsMaxLoudnessTimeMedian + segmentsMaxLoudnessStartMedian + 
+    tatumsStartRange + timbre0Variance + timbre1Variance + timbre3Variance + 
+    timbre4Variance + timbre6Variance + timbre8Variance + timbre9Variance + 
+    timbre11Range + songKey + startOfFadeOut + endOfFadeIn + 
+    loudness + tempo, data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.61197 -0.17367 -0.04304  0.17962  0.49709 
+
+Coefficients:
+                                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                     1.711e-15  6.615e-02   0.000 1.000000    
+barsStartVariance              -7.546e-01  5.394e-01  -1.399 0.183624    
+segmentsMaxLoudnessRange        1.387e-01  1.082e-01   1.282 0.220737    
+segmentsMaxLoudnessTimeMedian  -5.937e-01  1.574e-01  -3.772 0.002062 ** 
+segmentsMaxLoudnessStartMedian  3.825e-01  1.826e-01   2.095 0.054834 .  
+tatumsStartRange                3.749e+00  5.474e-01   6.848 7.95e-06 ***
+timbre0Variance                 9.059e-01  6.887e-01   1.315 0.209558    
+timbre1Variance                -3.168e+00  5.610e-01  -5.647 6.02e-05 ***
+timbre3Variance                 1.369e+00  4.443e-01   3.082 0.008118 ** 
+timbre4Variance                 1.157e+00  5.574e-01   2.075 0.056897 .  
+timbre6Variance                -2.054e+00  6.746e-01  -3.045 0.008739 ** 
+timbre8Variance                -1.215e+00  6.098e-01  -1.993 0.066113 .  
+timbre9Variance                 1.295e+00  4.623e-01   2.801 0.014151 *  
+timbre11Range                   3.308e-01  1.362e-01   2.428 0.029252 *  
+songKey                        -3.573e-01  1.094e-01  -3.266 0.005634 ** 
+startOfFadeOut                 -3.038e+00  5.805e-01  -5.233 0.000127 ***
+endOfFadeIn                     4.882e-01  1.097e-01   4.451 0.000548 ***
+loudness                       -1.157e+00  2.493e-01  -4.640 0.000383 ***
+tempo                           4.148e-01  9.123e-02   4.547 0.000457 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.38 on 14 degrees of freedom
+Multiple R-squared:  0.9368,	Adjusted R-squared:  0.8556 
+F-statistic: 11.53 on 18 and 14 DF,  p-value: 1.644e-05
+

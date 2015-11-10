@@ -1,0 +1,37 @@
+
+Call:
+lm(formula = hotness ~ barsStartMean + segmentsMaxLoudnessTimeRange + 
+    segmentsMaxLoudnessStartRange + segmentsStartMean + pitch0Range + 
+    pitch2Range + timbre4Range + timbre5Variance + timbre6Median + 
+    timbre8Range + pitch9Mean + pitch10Variance + timeSignature + 
+    songKey + loudness, data = scaled.dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.52347 -0.51845 -0.09554  0.41165  2.78795 
+
+Coefficients:
+                                Estimate Std. Error t value Pr(>|t|)  
+(Intercept)                    5.761e-16  8.589e-02   0.000   1.0000  
+barsStartMean                  1.471e+00  8.823e-01   1.667   0.0992 .
+segmentsMaxLoudnessTimeRange  -2.242e-01  9.962e-02  -2.250   0.0270 *
+segmentsMaxLoudnessStartRange -5.315e-01  3.311e-01  -1.605   0.1122  
+segmentsStartMean             -1.643e+00  8.956e-01  -1.835   0.0700 .
+pitch0Range                   -1.532e-01  1.064e-01  -1.439   0.1538  
+pitch2Range                   -3.210e-01  1.223e-01  -2.624   0.0103 *
+timbre4Range                   2.166e-01  1.203e-01   1.801   0.0752 .
+timbre5Variance               -2.111e-01  1.029e-01  -2.050   0.0434 *
+timbre6Median                 -2.623e-01  1.036e-01  -2.531   0.0132 *
+timbre8Range                   2.560e-01  1.204e-01   2.127   0.0364 *
+pitch9Mean                    -2.595e-01  1.023e-01  -2.537   0.0130 *
+pitch10Variance               -2.053e-01  1.007e-01  -2.038   0.0447 *
+timeSignature                  1.793e-01  9.614e-02   1.864   0.0657 .
+songKey                        1.647e-01  9.741e-02   1.691   0.0946 .
+loudness                       5.851e-01  3.495e-01   1.674   0.0978 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8589 on 84 degrees of freedom
+Multiple R-squared:  0.3741,	Adjusted R-squared:  0.2623 
+F-statistic: 3.347 on 15 and 84 DF,  p-value: 0.0002069
+
