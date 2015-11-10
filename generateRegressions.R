@@ -49,7 +49,7 @@ for (i in 1:length(res)) {
 
 	if (!exists("finalStep")) finalStep <- result2
 
-	print(finalStep$residuals)
+	#print(finalStep$residuals)
 
 	countries[[i]] <- finalStep$residuals
 
@@ -58,11 +58,20 @@ for (i in 1:length(res)) {
 	#sink(output)
 	#summary(finalStep)
 	#sink()
+
+	pdf(paste(country, "Residuals.pdf", sep=""), width = 11, height = 8.5)
+	plot(predict(finalStep),finalStep$residuals,main="Residual Plot",xlab="Y-hat",ylab="Studentized Deleted")
+	abline(h=0,lty=2)
+	lines(supsmu(predict(finalStep),finalStep$residuals),col=2)
+	dev.off()
+
 	detach(dat)
 }
 
-names(countries) <- res
+#names(countries) <- res
 
-print(countries)
+#print(countries)
 
-boxplot(countries)
+#pdf("CountryResiduals.pdf")
+#boxplot(countries, main="Country Residual Comparison Plot",xlab="Country",ylab="Studentized Residuals")
+#def.off()
