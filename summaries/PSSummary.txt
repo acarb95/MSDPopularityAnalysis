@@ -1,37 +1,42 @@
 
 Call:
-lm(formula = hotness ~ barsStartMedian + sectionsStartVariance + 
-    segmentsMaxLoudnessTimeMean + pitch0Range + timbre0Median + 
-    timbre1Variance + pitch2Variance + pitch4Median + timbre4Variance + 
-    pitch9Variance + mode + startOfFadeOut + duration + loudness + 
-    tempo, data = scaled.dat)
+lm(formula = f, data = scaled.dat)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1.82764 -0.55006 -0.03916  0.48888  2.01567 
+ALL 6 residuals are 0: no residual degrees of freedom!
 
-Coefficients:
-                              Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                  6.016e-16  8.093e-02   0.000  1.00000    
-barsStartMedian             -3.900e+00  1.500e+00  -2.599  0.01103 *  
-sectionsStartVariance        8.117e-01  3.344e-01   2.427  0.01734 *  
-segmentsMaxLoudnessTimeMean -5.270e-01  1.584e-01  -3.327  0.00130 ** 
-pitch0Range                  1.492e-01  8.960e-02   1.666  0.09954 .  
-timbre0Median                3.533e-01  2.333e-01   1.515  0.13362    
-timbre1Variance             -4.474e-01  1.480e-01  -3.023  0.00332 ** 
-pitch2Variance              -2.009e-01  1.012e-01  -1.985  0.05043 .  
-pitch4Median                 1.476e-01  8.839e-02   1.670  0.09872 .  
-timbre4Variance              4.354e-01  1.013e-01   4.299 4.59e-05 ***
-pitch9Variance               1.532e-01  9.815e-02   1.561  0.12235    
-mode                        -2.684e-01  9.018e-02  -2.977  0.00381 ** 
-startOfFadeOut              -3.101e+00  1.717e+00  -1.806  0.07452 .  
-duration                     6.020e+00  2.255e+00   2.669  0.00912 ** 
-loudness                    -7.615e-01  2.601e-01  -2.928  0.00440 ** 
-tempo                        1.836e-01  9.514e-02   1.930  0.05696 .  
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Coefficients: (22 not defined because of singularities)
+                                Estimate Std. Error t value Pr(>|t|)
+(Intercept)                    1.942e-15         NA      NA       NA
+barsStartVariance             -4.507e+01         NA      NA       NA
+beatsStartVariance             4.444e+01         NA      NA       NA
+sectionsStartMedian            3.306e-01         NA      NA       NA
+segmentsMaxLoudnessMean       -1.509e+00         NA      NA       NA
+segmentsMaxLoudnessTimeRange  -2.195e-01         NA      NA       NA
+segmentsMaxLoudnessStartRange         NA         NA      NA       NA
+segmentsStartVariance                 NA         NA      NA       NA
+tatumsStartMedian                     NA         NA      NA       NA
+timbre0Median                         NA         NA      NA       NA
+timbre1Median                         NA         NA      NA       NA
+timbre3Mean                           NA         NA      NA       NA
+timbre4Mean                           NA         NA      NA       NA
+timbre5Range                          NA         NA      NA       NA
+timbre6Median                         NA         NA      NA       NA
+timbre7Range                          NA         NA      NA       NA
+timbre8Median                         NA         NA      NA       NA
+timbre9Median                         NA         NA      NA       NA
+timbre10Range                         NA         NA      NA       NA
+timbre11Variance                      NA         NA      NA       NA
+timeSignature                         NA         NA      NA       NA
+songKey                               NA         NA      NA       NA
+mode                                  NA         NA      NA       NA
+startOfFadeOut                        NA         NA      NA       NA
+duration                              NA         NA      NA       NA
+endOfFadeIn                           NA         NA      NA       NA
+loudness                              NA         NA      NA       NA
+tempo                                 NA         NA      NA       NA
 
-Residual standard error: 0.8093 on 84 degrees of freedom
-Multiple R-squared:  0.4442,	Adjusted R-squared:  0.345 
-F-statistic: 4.476 on 15 and 84 DF,  p-value: 3.991e-06
+Residual standard error: NaN on 0 degrees of freedom
+Multiple R-squared:      1,	Adjusted R-squared:    NaN 
+F-statistic:   NaN on 5 and 0 DF,  p-value: NA
 

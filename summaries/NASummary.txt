@@ -1,32 +1,42 @@
 
 Call:
-lm(formula = hotness ~ barsStartRange + sectionsStartVariance + 
-    timbre0Median + pitch1Variance + timbre6Mean + timbre9Range + 
-    pitch10Mean + timbre11Mean + songKey + duration + tempo, 
-    data = scaled.dat)
+lm(formula = f, data = scaled.dat)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--1.7693 -0.5339 -0.1484  0.4991  2.1506 
+ALL 5 residuals are 0: no residual degrees of freedom!
 
-Coefficients:
-                        Estimate Std. Error t value Pr(>|t|)    
-(Intercept)           -3.060e-16  8.852e-02   0.000 1.000000    
-barsStartRange        -2.723e+00  1.336e+00  -2.039 0.044470 *  
-sectionsStartVariance -4.302e-01  2.193e-01  -1.962 0.052978 .  
-timbre0Median          1.626e-01  1.054e-01   1.543 0.126411    
-pitch1Variance         1.750e-01  9.829e-02   1.780 0.078473 .  
-timbre6Mean            3.508e-01  9.768e-02   3.592 0.000541 ***
-timbre9Range          -2.107e-01  1.036e-01  -2.033 0.045049 *  
-pitch10Mean           -2.429e-01  1.025e-01  -2.370 0.019952 *  
-timbre11Mean           1.652e-01  1.005e-01   1.644 0.103810    
-songKey                1.365e-01  9.446e-02   1.445 0.152131    
-duration               3.150e+00  1.317e+00   2.392 0.018883 *  
-tempo                  2.329e-01  9.604e-02   2.425 0.017373 *  
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Coefficients: (23 not defined because of singularities)
+                                 Estimate Std. Error t value Pr(>|t|)
+(Intercept)                    -2.245e-14         NA      NA       NA
+barsStartMedian                 8.182e+01         NA      NA       NA
+beatsStartRange                -7.322e+01         NA      NA       NA
+sectionsStartMean              -9.153e+00         NA      NA       NA
+segmentsMaxLoudnessMean         2.615e+00         NA      NA       NA
+segmentsMaxLoudnessTimeMedian          NA         NA      NA       NA
+segmentsMaxLoudnessStartMedian         NA         NA      NA       NA
+segmentsStartVariance                  NA         NA      NA       NA
+tatumsStartMedian                      NA         NA      NA       NA
+timbre0Median                          NA         NA      NA       NA
+timbre1Median                          NA         NA      NA       NA
+timbre3Range                           NA         NA      NA       NA
+timbre4Median                          NA         NA      NA       NA
+timbre5Median                          NA         NA      NA       NA
+timbre6Median                          NA         NA      NA       NA
+timbre7Median                          NA         NA      NA       NA
+timbre8Median                          NA         NA      NA       NA
+timbre9Median                          NA         NA      NA       NA
+timbre10Median                         NA         NA      NA       NA
+timbre11Median                         NA         NA      NA       NA
+timeSignature                          NA         NA      NA       NA
+songKey                                NA         NA      NA       NA
+mode                                   NA         NA      NA       NA
+startOfFadeOut                         NA         NA      NA       NA
+duration                               NA         NA      NA       NA
+endOfFadeIn                            NA         NA      NA       NA
+loudness                               NA         NA      NA       NA
+tempo                                  NA         NA      NA       NA
 
-Residual standard error: 0.8852 on 88 degrees of freedom
-Multiple R-squared:  0.3034,	Adjusted R-squared:  0.2164 
-F-statistic: 3.485 on 11 and 88 DF,  p-value: 0.0004564
+Residual standard error: NaN on 0 degrees of freedom
+Multiple R-squared:      1,	Adjusted R-squared:    NaN 
+F-statistic:   NaN on 4 and 0 DF,  p-value: NA
 

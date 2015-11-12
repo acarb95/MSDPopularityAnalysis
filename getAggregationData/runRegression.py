@@ -100,165 +100,165 @@ def getAggregations(array):
 	arrRange = np.amax(array) - np.amin(array)
 	return median, mean, variance, arrRange
 
-def normalize2DArray(array):
-	mean = np.mean(array)
-	stddev = np.std(array)
-	overall = []
+# def normalize2DArray(array):
+# 	mean = np.mean(array)
+# 	stddev = np.std(array)
+# 	overall = []
 
-	for i in range(len(array)):
-		newArray = []
-		for j in range(len(array[i])):
-			if stddev == 0:
-				newArray.append(array[i][j])
-			else:
-				newArray.append((array[i][j] - mean)/stddev)
-		overall.append(newArray)
-	return overall
+# 	for i in range(len(array)):
+# 		newArray = []
+# 		for j in range(len(array[i])):
+# 			if stddev == 0:
+# 				newArray.append(array[i][j])
+# 			else:
+# 				newArray.append((array[i][j] - mean)/stddev)
+# 		overall.append(newArray)
+# 	return overall
 
-def normalize1DArray(array):
-	mean = np.mean(array)
-	stddev = np.std(array)
-	overall = []
-	for i in range(len(array)):
-		if stddev == 0:
-			overall.append(array[i])
-		else:
-			overall.append((array[i] - mean)/stddev)
-	return overall
+# def normalize1DArray(array):
+# 	mean = np.mean(array)
+# 	stddev = np.std(array)
+# 	overall = []
+# 	for i in range(len(array)):
+# 		if stddev == 0:
+# 			overall.append(array[i])
+# 		else:
+# 			overall.append((array[i] - mean)/stddev)
+# 	return overall
 
-def generateRegression(datas, solver='auto', normalize=True, alpha=1.0):
-	# Test on small test case to see how to use --> ideally you have test, train sets and then the transformed one to compare with
-	data = list(datas)
-	eighty = int(math.floor(len(data)*.8))
-	if eighty != 0:
-		train = data[:eighty]
-		test = data[eighty:]
-	else:
-		train = data
-		test = data
-	trainx, trainy = map(list, zip(*train))
-	testx, testy = map(list, zip(*test))
+# def generateRegression(datas, solver='auto', normalize=True, alpha=1.0):
+# 	# Test on small test case to see how to use --> ideally you have test, train sets and then the transformed one to compare with
+# 	data = list(datas)
+# 	eighty = int(math.floor(len(data)*.8))
+# 	if eighty != 0:
+# 		train = data[:eighty]
+# 		test = data[eighty:]
+# 	else:
+# 		train = data
+# 		test = data
+# 	trainx, trainy = map(list, zip(*train))
+# 	testx, testy = map(list, zip(*test))
 
-	trainx = preprocessing.scale(trainx)
-	testx = preprocessing.scale(testx)
+# 	trainx = preprocessing.scale(trainx)
+# 	testx = preprocessing.scale(testx)
 
-	if normalize:
-		trainMean = np.mean(trainy)
-		trainStdDev = np.std(trainy)
-		testMean = np.mean(testy)
-		testStdDev = np.std(testy)
-		trainy = normalize1DArray(trainy)
-		testy = normalize1DArray(testy)
+# 	if normalize:
+# 		trainMean = np.mean(trainy)
+# 		trainStdDev = np.std(trainy)
+# 		testMean = np.mean(testy)
+# 		testStdDev = np.std(testy)
+# 		trainy = normalize1DArray(trainy)
+# 		testy = normalize1DArray(testy)
 
-	aggregator.addStats(trainx, "trainx")
-	aggregator.addStats(testx, "testx")
-	aggregator.addStats(trainy, "trainy")
-	aggregator.addStats(testy, "testy")
-	aggregator.outputStats()
+# 	aggregator.addStats(trainx, "trainx")
+# 	aggregator.addStats(testx, "testx")
+# 	aggregator.addStats(trainy, "trainy")
+# 	aggregator.addStats(testy, "testy")
+# 	aggregator.outputStats()
 
-	clf = linear_model.Ridge(solver=solver, alpha=alpha)
+# 	clf = linear_model.Ridge(solver=solver, alpha=alpha)
 
-	clf.fit(trainx, trainy)
+# 	clf.fit(trainx, trainy)
 
-	coefficients = clf.coef_
+# 	coefficients = clf.coef_
 
-	n = len(data)
-	m = len(trainx[0])
+# 	n = len(data)
+# 	m = len(trainx[0])
 
-	results = (coefficients, getMetrics(clf, testx, testy, n, m))
+# 	results = (coefficients, getMetrics(clf, testx, testy, n, m))
 
-	return results
+# 	return results
 
-def generateGraph(alpha, dataxN, datayN, dataySD, datayMean):
-	clf = linear_model.Ridge(alpha=alpha)
-	fig, ax = plt.subplots()
-	predicted = cross_val_predict(clf, dataxN, datayN, cv=10)
-	predicted = denormalize(predicted, dataySD, datayMean)
-	ax.scatter(datay, predicted)
-	ax.plot([min(datay), max(datay)], [min(datay), max(datay)], 'k--', lw=4)
-	ax.set_xlabel('Measured')
-	ax.set_ylabel('Predicted')
-	ax.set_title(alpha)
-	fig.show()
+# def generateGraph(alpha, dataxN, datayN, dataySD, datayMean):
+# 	clf = linear_model.Ridge(alpha=alpha)
+# 	fig, ax = plt.subplots()
+# 	predicted = cross_val_predict(clf, dataxN, datayN, cv=10)
+# 	predicted = denormalize(predicted, dataySD, datayMean)
+# 	ax.scatter(datay, predicted)
+# 	ax.plot([min(datay), max(datay)], [min(datay), max(datay)], 'k--', lw=4)
+# 	ax.set_xlabel('Measured')
+# 	ax.set_ylabel('Predicted')
+# 	ax.set_title(alpha)
+# 	fig.show()
 
 
-def denormalize(array, stddev, mean):
-	newArray = []
-	for i in range(len(array)):
-		if stddev != 0:
-			newArray.append(array[i]*stddev + mean)
-		else:
-			newArray.append(array[i])
-	return newArray
+# def denormalize(array, stddev, mean):
+# 	newArray = []
+# 	for i in range(len(array)):
+# 		if stddev != 0:
+# 			newArray.append(array[i]*stddev + mean)
+# 		else:
+# 			newArray.append(array[i])
+# 	return newArray
 
-def getMetrics(clf, testx, testy, n, m):
-	prediction = clf.predict(testx)
-	#import pdb;pdb.set_trace()
-	explainedVariance = metrics.explained_variance_score(testy, prediction)
-	MAE = metrics.mean_absolute_error(testy, prediction)
-	MSE = metrics.mean_squared_error(testy, prediction)
-	rMSE = math.sqrt(MSE)
-	MedianAE = metrics.median_absolute_error(testy, prediction)
-	r2_score = metrics.r2_score(testy, prediction)
-	if (n-m-1) == 0:
-		aR2_score = "NaN"
-	else:
-		aR2_score = 1 - (1 - r2_score)* ((n-1)/(n-m-1))
-	return (explainedVariance, MAE, MSE, rMSE, MedianAE, r2_score, aR2_score)
+# def getMetrics(clf, testx, testy, n, m):
+# 	prediction = clf.predict(testx)
+# 	#import pdb;pdb.set_trace()
+# 	explainedVariance = metrics.explained_variance_score(testy, prediction)
+# 	MAE = metrics.mean_absolute_error(testy, prediction)
+# 	MSE = metrics.mean_squared_error(testy, prediction)
+# 	rMSE = math.sqrt(MSE)
+# 	MedianAE = metrics.median_absolute_error(testy, prediction)
+# 	r2_score = metrics.r2_score(testy, prediction)
+# 	if (n-m-1) == 0:
+# 		aR2_score = "NaN"
+# 	else:
+# 		aR2_score = 1 - (1 - r2_score)* ((n-1)/(n-m-1))
+# 	return (explainedVariance, MAE, MSE, rMSE, MedianAE, r2_score, aR2_score)
 
-def getCoefficients(coefficients):
-	newFeatures = []
+# def getCoefficients(coefficients):
+# 	newFeatures = []
 
-	i = 4
-	while i <= 128:
-		newFeatures.append(indexOfBest(coefficients, i - 4, i))
-		i += 4
+# 	i = 4
+# 	while i <= 128:
+# 		newFeatures.append(indexOfBest(coefficients, i - 4, i))
+# 		i += 4
 
-	return newFeatures
+# 	return newFeatures
 
-def indexOfBest(coef, start, end):
-	return np.where(coef == max(coef[start:end]))[0][0]
+# def indexOfBest(coef, start, end):
+# 	return np.where(coef == max(coef[start:end]))[0][0]
 
-def outputToFile(outFile, normalize, alpha, status, scores):
-	nHeader = "Not Normalized"
+# def outputToFile(outFile, normalize, alpha, status, scores):
+# 	nHeader = "Not Normalized"
 
-	if normalize:
-		nHeader = "Normalized"
+# 	if normalize:
+# 		nHeader = "Normalized"
 
-	with open(outFile, 'a') as output:
-		output.write("(" + str(alpha) + ", " + status + ", " + nHeader + "): \n")
-		output.write("   EV: " + str(scores[0]) + "\n")
-		output.write("   MAE: " + str(scores[1]) + "\n")
-		output.write("   MSE: " + str(scores[2]) + "\n")
-		output.write("   RMSE: " + str(scores[3]) + "\n")
-		output.write("   MedAE: " + str(scores[4]) + "\n")
-		output.write("   R^2: " + str(scores[5]) + "\n")
-		output.write("   aR^2: " + str(scores[6]) + "\n")
+# 	with open(outFile, 'a') as output:
+# 		output.write("(" + str(alpha) + ", " + status + ", " + nHeader + "): \n")
+# 		output.write("   EV: " + str(scores[0]) + "\n")
+# 		output.write("   MAE: " + str(scores[1]) + "\n")
+# 		output.write("   MSE: " + str(scores[2]) + "\n")
+# 		output.write("   RMSE: " + str(scores[3]) + "\n")
+# 		output.write("   MedAE: " + str(scores[4]) + "\n")
+# 		output.write("   R^2: " + str(scores[5]) + "\n")
+# 		output.write("   aR^2: " + str(scores[6]) + "\n")
 
-def writeOutput(outFile, data, country, normalize):
-	global aggregator
+# def writeOutput(outFile, data, country, normalize):
+# 	global aggregator
 
-	fileName = ""
+# 	fileName = ""
 
-	if normalize:
-		print "Normalized: "
-		fileName = "Normalized"
+# 	if normalize:
+# 		print "Normalized: "
+# 		fileName = "Normalized"
 
-	for i in np.arange(0, 1.1, 0.1):
-		print "\tChecking alpha of " + str(i)
-		print "\t\tGetting full coefficients..."
-		aggregator = StatsAggregator(country, True, normalize)
-		coefficients, scores = generateRegression(data, solver='auto', alpha=i, normalize=normalize)
-		outputToFile(outFile, normalize, i, "Full", scores)
+# 	for i in np.arange(0, 1.1, 0.1):
+# 		print "\tChecking alpha of " + str(i)
+# 		print "\t\tGetting full coefficients..."
+# 		aggregator = StatsAggregator(country, True, normalize)
+# 		coefficients, scores = generateRegression(data, solver='auto', alpha=i, normalize=normalize)
+# 		outputToFile(outFile, normalize, i, "Full", scores)
 
-		print "\t\tGetting partial coefficients..."
-		newFeatures = getCoefficients(coefficients)
-		newData = getDataset(lines, newFeatures)
-		aggregator = StatsAggregator(country, False, normalize)
-		coefficients, scores = generateRegression(newData, solver='auto', alpha = i, normalize=normalize)
-		outputToFile(outFile, normalize, i, "Partial", scores)
+# 		print "\t\tGetting partial coefficients..."
+# 		newFeatures = getCoefficients(coefficients)
+# 		newData = getDataset(lines, newFeatures)
+# 		aggregator = StatsAggregator(country, False, normalize)
+# 		coefficients, scores = generateRegression(newData, solver='auto', alpha = i, normalize=normalize)
+# 		outputToFile(outFile, normalize, i, "Partial", scores)
 
-		aggregator = None
+# 		aggregator = None
 
 def outputDataCSV(data, output):
 	addHeader(output)

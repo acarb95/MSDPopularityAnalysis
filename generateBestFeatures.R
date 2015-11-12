@@ -1,27 +1,32 @@
 # Library imports
-library(MASS)
-library(mlbench)
 library(FSelector)
 library(tools)
 
 args <- commandArgs(trailingOnly = TRUE)
-files <- args[1]
+countryFile <- args[1]
 
-dat <- read.csv(files, header=TRUE)
-attach(dat)
+countryCodeList <- readLines(countryFile)
 
-scaled.dat <- data.frame(lapply(dat, function(x) scale(x)))
-scaled.dat <- scaled.dat[, colSums(is.na(scaled.dat)) < nrow(scaled.dat)]
+for (i in 1:length(countryCodeList)) {
+	country <- countryCodeList[i]
+	files <- paste("./testOutput", paste(country, ".csv", sep=""), sep="/")
+	dat <- read.csv(files, header=TRUE)
+	attach(dat)
 
-if (ncol(scaled.dat) == 0) stop("Only one data point")
+	scaled.dat <- data.frame(lapply(dat, function(x) scale(x)))
+	scaled.dat <- scaled.dat[, colSums(is.na(scaled.dat)) < nrow(scaled.dat)]
 
-scaled.weights <- linear.correlation(hotness ~ ., data=scaled.dat)
+	if (ncol(scaled.dat) == 0) stop("Only one data point")
 
-output <- paste(basename(file_path_sans_ext(files)), "weights.txt", sep="")
+	scaled.weights <- linear.correlation(hotness ~ ., data=scaled.dat)
 
-print(paste("Generating ", output))
+	output <- paste(country, "weights.txt", sep="")
 
-sink(output)
-scaled.weights
-sink()
+	print(paste("Generating ", output))
 
+	sink(output)
+	scaled.weights
+	sink()
+
+	detach(dat)
+}

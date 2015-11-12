@@ -1,22 +1,29 @@
 # Library imports
 library(MASS)
-library(mlbench)
 library(FSelector)
-library(tools)
+
 
 SUMMARIES <- TRUE
-RESIDUALS <- FALSE
-ALLRESIDUALS <- FALSE
+RESIDUALS <- TRUE
+ALLRESIDUALS <- TRUE
 
 args <- commandArgs(trailingOnly = TRUE)
 countryFile <- args[1]
+countryNameFile <- args[2]
 
-res <- readLines(countryFile)
+countryCodeList <- readLines(countryFile)
+countryNameList <- readLines(countryNameFile)
 
 countries <- list()
+countryNames <- vector()
+count <- 1
 
-for (i in 1:length(res)) {
-	country <- res[i]
+for (i in 1:length(countryCodeList)) {
+	country <- countryCodeList[i]
+	cName <- countryNameList[i]
+
+	finalStep <- NULL
+	f <- NULL
 	files <- paste("./testOutput", paste(country, ".csv", sep=""), sep="/")
 
 	print(paste("Generating Regression for ", files))
@@ -33,7 +40,7 @@ for (i in 1:length(res)) {
 		f <- as.simple.formula(".", "hotness")
 	})
 
-	if (!exists("f")) f <- as.simple.formula(".", "hotness")
+	if (!exists("f") | is.null(f)) f <- as.simple.formula(".", "hotness")
 
 	scaled.dat <- data.frame(lapply(dat, function(x) scale(x)))
 	scaled.dat <- scaled.dat[, colSums(is.na(scaled.dat)) < nrow(scaled.dat)]
@@ -51,14 +58,25 @@ for (i in 1:length(res)) {
 		finalStep <- fit
 	})
 
-	if (!exists("finalStep")) finalStep <- result2
+	if (!exists("finalStep") | is.null(finalStep)) finalStep <- result2
 
 	#print(finalStep$residuals)
+	nonZero <- FALSE
 
-	countries[[i]] <- finalStep$residuals
+	for (i in 1:length(finalStep$residuals)) {
+		if (finalStep$residuals[i] != 0){
+			nonZero <- TRUE
+		}
+	}
+
+	if (nonZero) {
+		countries[[count]] <- finalStep$residuals
+		countryNames[[count]] <- country
+		count <- count+1
+	}
 
 	if (SUMMARIES) {
-      output <- paste("./summaries", paste(country, "Summary.txt", sep=""),     sep="/")
+    	output <- paste("./summaries", paste(country, "Summary.txt", sep=""),     sep="/")
 		print(paste("Printing summary to", output))
 
 		sink(output)
@@ -68,8 +86,10 @@ for (i in 1:length(res)) {
 
 	if (RESIDUALS) {
 		print("Creating residuals plot and saving")
+		title <- paste(paste(cName, paste(paste("(", country, sep=""), ")", sep="")), "Residual Plot")
+		print(title)
 		pdf(paste("./residuals", paste(country, "Residuals.pdf", sep=""), sep="/"), width = 11, height = 8.5)
-		plot(predict(finalStep),finalStep$residuals,main=paste(country, "Residual Plot"),xlab="Y-hat",ylab="Studentized Deleted")
+		plot(predict(finalStep),finalStep$residuals,main=title,xlab="Y-hat",ylab="Studentized Residuals")
 		abline(h=0,lty=2)
 		lines(supsmu(predict(finalStep),finalStep$residuals),col=2)
 		dev.off()
@@ -78,7 +98,7 @@ for (i in 1:length(res)) {
 	detach(dat)
 }
 
-names(countries) <- res
+names(countries) <- countryNames
 
 #print(countries)
 

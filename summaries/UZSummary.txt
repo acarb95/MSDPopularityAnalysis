@@ -1,43 +1,42 @@
 
 Call:
-lm(formula = hotness ~ beatsStartVariance + segmentsMaxLoudnessMedian + 
-    segmentsMaxLoudnessTimeRange + segmentsMaxLoudnessStartVariance + 
-    tatumsStartVariance + timbre1Median + pitch3Median + timbre3Range + 
-    timbre4Variance + timbre7Median + timbre8Median + pitch9Variance + 
-    timbre9Mean + pitch10Mean + timbre10Median + timbre11Mean + 
-    mode + endOfFadeIn + loudness + timbre5Variance, data = scaled.dat)
+lm(formula = f, data = scaled.dat)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1.17111 -0.33599 -0.02974  0.33338  1.16306 
+ALL 7 residuals are 0: no residual degrees of freedom!
 
-Coefficients:
-                                   Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                       9.713e-15  5.847e-02   0.000 1.000000    
-beatsStartVariance                3.658e+01  1.828e+01   2.000 0.049334 *  
-segmentsMaxLoudnessMedian        -6.835e-01  3.292e-01  -2.076 0.041562 *  
-segmentsMaxLoudnessTimeRange     -1.964e-01  7.547e-02  -2.603 0.011276 *  
-segmentsMaxLoudnessStartVariance  1.900e-01  8.018e-02   2.370 0.020562 *  
-tatumsStartVariance              -3.673e+01  1.829e+01  -2.008 0.048451 *  
-timbre1Median                    -3.328e-01  1.153e-01  -2.887 0.005174 ** 
-pitch3Median                      2.243e-01  8.603e-02   2.607 0.011160 *  
-timbre3Range                     -1.066e-01  7.148e-02  -1.491 0.140421    
-timbre4Variance                  -1.159e-01  7.301e-02  -1.587 0.117006    
-timbre7Median                     3.460e-01  1.010e-01   3.425 0.001030 ** 
-timbre8Median                     2.357e-01  8.977e-02   2.625 0.010619 *  
-pitch9Variance                    1.973e-01  7.165e-02   2.753 0.007508 ** 
-timbre9Mean                      -4.035e-01  1.028e-01  -3.924 0.000201 ***
-pitch10Mean                      -9.336e-02  7.145e-02  -1.307 0.195580    
-timbre10Median                    2.694e-01  1.091e-01   2.470 0.015942 *  
-timbre11Mean                      4.030e-01  1.187e-01   3.395 0.001134 ** 
-mode                              1.769e-01  6.981e-02   2.535 0.013498 *  
-endOfFadeIn                       2.110e-01  7.037e-02   2.998 0.003758 ** 
-loudness                          8.717e-01  3.016e-01   2.891 0.005117 ** 
-timbre5Variance                  -1.315e-01  8.692e-02  -1.513 0.134801    
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Coefficients: (21 not defined because of singularities)
+                                  Estimate Std. Error t value Pr(>|t|)
+(Intercept)                     -7.323e-16         NA      NA       NA
+barsStartVariance                9.305e+01         NA      NA       NA
+beatsStartVariance              -1.076e+02         NA      NA       NA
+sectionsStartVariance            1.379e+01         NA      NA       NA
+segmentsMaxLoudnessRange         1.300e+00         NA      NA       NA
+segmentsMaxLoudnessTimeVariance  5.699e-01         NA      NA       NA
+segmentsMaxLoudnessStartRange   -3.284e+00         NA      NA       NA
+segmentsStartVariance                   NA         NA      NA       NA
+tatumsStartVariance                     NA         NA      NA       NA
+timbre0Range                            NA         NA      NA       NA
+timbre1Range                            NA         NA      NA       NA
+timbre3Variance                         NA         NA      NA       NA
+timbre4Variance                         NA         NA      NA       NA
+timbre5Median                           NA         NA      NA       NA
+timbre6Variance                         NA         NA      NA       NA
+timbre7Variance                         NA         NA      NA       NA
+timbre8Variance                         NA         NA      NA       NA
+timbre9Range                            NA         NA      NA       NA
+timbre10Range                           NA         NA      NA       NA
+timbre11Variance                        NA         NA      NA       NA
+timeSignature                           NA         NA      NA       NA
+songKey                                 NA         NA      NA       NA
+mode                                    NA         NA      NA       NA
+startOfFadeOut                          NA         NA      NA       NA
+duration                                NA         NA      NA       NA
+endOfFadeIn                             NA         NA      NA       NA
+loudness                                NA         NA      NA       NA
+tempo                                   NA         NA      NA       NA
 
-Residual standard error: 0.5578 on 70 degrees of freedom
-Multiple R-squared:  0.758,	Adjusted R-squared:  0.6889 
-F-statistic: 10.96 on 20 and 70 DF,  p-value: 1.725e-14
+Residual standard error: NaN on 0 degrees of freedom
+Multiple R-squared:      1,	Adjusted R-squared:    NaN 
+F-statistic:   NaN on 6 and 0 DF,  p-value: NA
 

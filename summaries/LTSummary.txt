@@ -1,48 +1,42 @@
 
 Call:
-lm(formula = hotness ~ barsStartVariance + segmentsMaxLoudnessVariance + 
-    segmentsMaxLoudnessStartRange + segmentsStartVariance + tatumsStartVariance + 
-    timbre0Variance + pitch1Range + timbre1Median + pitch2Mean + 
-    pitch3Range + timbre3Mean + timbre4Range + timbre5Mean + 
-    pitch6Median + pitch7Median + pitch8Variance + timbre8Range + 
-    timbre9Range + pitch10Variance + timbre10Variance + timeSignature + 
-    songKey + duration + loudness, data = scaled.dat)
+lm(formula = f, data = scaled.dat)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--0.65745 -0.24164 -0.01995  0.22892  0.82134 
+ALL 11 residuals are 0: no residual degrees of freedom!
 
-Coefficients:
-                                Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                   -1.491e-16  6.384e-02   0.000 1.000000    
-barsStartVariance              4.399e+00  4.000e+00   1.100 0.280280    
-segmentsMaxLoudnessVariance   -9.116e-01  6.658e-01  -1.369 0.181146    
-segmentsMaxLoudnessStartRange  7.520e-01  2.205e-01   3.410 0.001875 ** 
-segmentsStartVariance          1.549e+00  1.262e+00   1.227 0.229316    
-tatumsStartVariance           -7.335e+00  3.870e+00  -1.896 0.067682 .  
-timbre0Variance                1.005e+00  7.110e-01   1.413 0.167854    
-pitch1Range                   -2.351e-01  1.029e-01  -2.285 0.029574 *  
-timbre1Median                  2.207e-01  1.167e-01   1.891 0.068365 .  
-pitch2Mean                     2.064e-01  1.253e-01   1.647 0.109987    
-pitch3Range                   -2.503e-01  8.808e-02  -2.842 0.007989 ** 
-timbre3Mean                   -2.169e-01  1.223e-01  -1.773 0.086442 .  
-timbre4Range                  -3.999e-01  1.348e-01  -2.966 0.005869 ** 
-timbre5Mean                    8.818e-01  1.505e-01   5.858 2.08e-06 ***
-pitch6Median                  -2.530e-01  1.022e-01  -2.475 0.019180 *  
-pitch7Median                   2.326e-01  1.021e-01   2.278 0.029989 *  
-pitch8Variance                -1.953e-01  1.095e-01  -1.784 0.084505 .  
-timbre8Range                  -2.399e-01  9.542e-02  -2.514 0.017522 *  
-timbre9Range                   5.543e-01  1.201e-01   4.614 6.91e-05 ***
-pitch10Variance               -2.708e-01  1.086e-01  -2.495 0.018326 *  
-timbre10Variance              -2.084e-01  1.358e-01  -1.535 0.135371    
-timeSignature                  1.087e-01  8.583e-02   1.267 0.214877    
-songKey                        1.954e-01  9.013e-02   2.168 0.038195 *  
-duration                       1.488e+00  2.956e-01   5.032 2.13e-05 ***
-loudness                      -1.018e+00  2.372e-01  -4.291 0.000171 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Coefficients: (17 not defined because of singularities)
+                                   Estimate Std. Error t value Pr(>|t|)
+(Intercept)                      -4.392e-15         NA      NA       NA
+barsStartVariance                -1.726e+01         NA      NA       NA
+beatsStartVariance                4.904e+01         NA      NA       NA
+sectionsStartVariance            -2.014e+00         NA      NA       NA
+segmentsMaxLoudnessVariance       7.088e-01         NA      NA       NA
+segmentsMaxLoudnessTimeMean       1.257e+00         NA      NA       NA
+segmentsMaxLoudnessStartVariance -2.382e+00         NA      NA       NA
+segmentsStartVariance             1.736e+00         NA      NA       NA
+tatumsStartVariance              -3.131e+01         NA      NA       NA
+timbre0Variance                   5.052e+00         NA      NA       NA
+timbre1Variance                  -5.395e+00         NA      NA       NA
+timbre3Variance                          NA         NA      NA       NA
+timbre4Variance                          NA         NA      NA       NA
+timbre5Variance                          NA         NA      NA       NA
+timbre6Variance                          NA         NA      NA       NA
+timbre7Variance                          NA         NA      NA       NA
+timbre8Variance                          NA         NA      NA       NA
+timbre9Range                             NA         NA      NA       NA
+timbre10Variance                         NA         NA      NA       NA
+timbre11Variance                         NA         NA      NA       NA
+timeSignature                            NA         NA      NA       NA
+songKey                                  NA         NA      NA       NA
+mode                                     NA         NA      NA       NA
+startOfFadeOut                           NA         NA      NA       NA
+duration                                 NA         NA      NA       NA
+endOfFadeIn                              NA         NA      NA       NA
+loudness                                 NA         NA      NA       NA
+tempo                                    NA         NA      NA       NA
 
-Residual standard error: 0.4735 on 30 degrees of freedom
-Multiple R-squared:  0.8755,	Adjusted R-squared:  0.7758 
-F-statistic: 8.786 on 24 and 30 DF,  p-value: 5.328e-08
+Residual standard error: NaN on 0 degrees of freedom
+Multiple R-squared:      1,	Adjusted R-squared:    NaN 
+F-statistic:   NaN on 10 and 0 DF,  p-value: NA
 

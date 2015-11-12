@@ -1,39 +1,42 @@
 
 Call:
-lm(formula = hotness ~ barsStartMedian + segmentsMaxLoudnessVariance + 
-    segmentsMaxLoudnessStartMedian + pitch1Variance + timbre1Median + 
-    pitch2Variance + timbre4Mean + pitch5Variance + timbre7Range + 
-    pitch8Variance + timbre9Mean + pitch11Range + timbre11Range + 
-    timeSignature + mode + startOfFadeOut + loudness, data = scaled.dat)
+lm(formula = f, data = scaled.dat)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1.81763 -0.53401 -0.07397  0.41985  1.96795 
+ALL 8 residuals are 0: no residual degrees of freedom!
 
-Coefficients:
-                                 Estimate Std. Error t value Pr(>|t|)   
-(Intercept)                    -8.642e-16  8.167e-02   0.000  1.00000   
-barsStartMedian                -6.842e+00  3.310e+00  -2.067  0.04192 * 
-segmentsMaxLoudnessVariance     3.292e-01  1.018e-01   3.234  0.00176 **
-segmentsMaxLoudnessStartMedian -5.832e-01  2.277e-01  -2.562  0.01224 * 
-pitch1Variance                 -2.669e-01  1.088e-01  -2.453  0.01628 * 
-timbre1Median                   1.951e-01  1.281e-01   1.523  0.13163   
-pitch2Variance                  2.377e-01  9.547e-02   2.489  0.01482 * 
-timbre4Mean                     1.395e-01  1.029e-01   1.355  0.17918   
-pitch5Variance                  1.533e-01  1.027e-01   1.492  0.13953   
-timbre7Range                   -2.491e-01  9.316e-02  -2.674  0.00903 **
-pitch8Variance                  1.676e-01  1.032e-01   1.625  0.10811   
-timbre9Mean                    -2.166e-01  1.005e-01  -2.156  0.03401 * 
-pitch11Range                   -1.266e-01  9.778e-02  -1.295  0.19892   
-timbre11Range                  -3.389e-01  1.103e-01  -3.072  0.00288 **
-timeSignature                   1.331e-01  9.160e-02   1.453  0.15016   
-mode                           -1.357e-01  8.843e-02  -1.534  0.12879   
-startOfFadeOut                  6.951e+00  3.309e+00   2.101  0.03872 * 
-loudness                        4.438e-01  2.039e-01   2.177  0.03239 * 
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Coefficients: (20 not defined because of singularities)
+                                   Estimate Std. Error t value Pr(>|t|)
+(Intercept)                      -2.351e-14         NA      NA       NA
+barsStartMedian                  -3.069e+02         NA      NA       NA
+beatsStartMedian                  2.982e+02         NA      NA       NA
+sectionsStartVariance             7.195e+00         NA      NA       NA
+segmentsMaxLoudnessRange         -7.149e-01         NA      NA       NA
+segmentsMaxLoudnessTimeMean       4.752e-01         NA      NA       NA
+segmentsMaxLoudnessStartVariance  7.389e-01         NA      NA       NA
+segmentsStartMean                 2.008e+00         NA      NA       NA
+tatumsStartMedian                        NA         NA      NA       NA
+timbre0Median                            NA         NA      NA       NA
+timbre1Variance                          NA         NA      NA       NA
+timbre3Median                            NA         NA      NA       NA
+timbre4Median                            NA         NA      NA       NA
+timbre5Median                            NA         NA      NA       NA
+timbre6Median                            NA         NA      NA       NA
+timbre7Median                            NA         NA      NA       NA
+timbre8Median                            NA         NA      NA       NA
+timbre9Median                            NA         NA      NA       NA
+timbre10Median                           NA         NA      NA       NA
+timbre11Median                           NA         NA      NA       NA
+timeSignature                            NA         NA      NA       NA
+songKey                                  NA         NA      NA       NA
+mode                                     NA         NA      NA       NA
+startOfFadeOut                           NA         NA      NA       NA
+duration                                 NA         NA      NA       NA
+endOfFadeIn                              NA         NA      NA       NA
+loudness                                 NA         NA      NA       NA
+tempo                                    NA         NA      NA       NA
 
-Residual standard error: 0.8167 on 82 degrees of freedom
-Multiple R-squared:  0.4475,	Adjusted R-squared:  0.333 
-F-statistic: 3.907 on 17 and 82 DF,  p-value: 1.536e-05
+Residual standard error: NaN on 0 degrees of freedom
+Multiple R-squared:      1,	Adjusted R-squared:    NaN 
+F-statistic:   NaN on 7 and 0 DF,  p-value: NA
 

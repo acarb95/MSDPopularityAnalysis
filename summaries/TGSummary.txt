@@ -1,59 +1,151 @@
 
 Call:
-lm(formula = hotness ~ barsStartVariance + beatsStartVariance + 
-    sectionsStartMean + segmentsMaxLoudnessVariance + segmentsMaxLoudnessTimeMedian + 
-    segmentsStartVariance + tatumsStartVariance + timbre0Variance + 
-    timbre1Range + timbre3Variance + timbre4Variance + timbre5Variance + 
-    timbre6Variance + timbre7Variance + timbre8Variance + timbre9Variance + 
-    timbre10Variance + timbre11Variance + timeSignature + songKey + 
-    mode + startOfFadeOut + duration + endOfFadeIn + loudness + 
-    tempo, data = scaled.dat)
+lm(formula = f, data = scaled.dat)
 
 Residuals:
-         1          2          3          4          5          6          7 
- 0.0141897 -0.0409753  0.0447005 -0.0540311 -0.0158065 -0.0310061 -0.0213430 
-         8          9         10         11         12         13         14 
- 0.0834433 -0.0511099 -0.0053783 -0.0251128  0.1256106 -0.0004441 -0.0474116 
-        15         16         17         18         19         20         21 
--0.0102470 -0.0108758  0.0336038 -0.0266202  0.0314851 -0.0209912 -0.0239039 
-        22         23         24         25         26         27         28 
- 0.0059361  0.0058759  0.0215804 -0.0136637 -0.0066582  0.0059919  0.0707580 
-        29 
--0.0375966 
+ALL 1 residuals are 0: no residual degrees of freedom!
 
-Coefficients:
-                                Estimate Std. Error t value Pr(>|t|)  
-(Intercept)                    1.419e-15  2.877e-02   0.000   1.0000  
-barsStartVariance             -9.909e+00  3.746e+00  -2.645   0.1181  
-beatsStartVariance            -1.074e+01  8.947e+00  -1.201   0.3528  
-sectionsStartMean              1.038e+00  4.942e-01   2.101   0.1704  
-segmentsMaxLoudnessVariance    6.581e-01  5.436e-01   1.211   0.3497  
-segmentsMaxLoudnessTimeMedian -6.510e-01  1.324e-01  -4.915   0.0390 *
-segmentsStartVariance          2.329e+00  8.373e-01   2.782   0.1086  
-tatumsStartVariance            1.994e+01  8.556e+00   2.330   0.1451  
-timbre0Variance               -8.852e+00  1.207e+00  -7.336   0.0181 *
-timbre1Range                   1.055e+00  1.887e-01   5.592   0.0305 *
-timbre3Variance                8.813e-01  3.401e-01   2.591   0.1222  
-timbre4Variance                4.296e+00  6.701e-01   6.412   0.0235 *
-timbre5Variance               -2.203e+00  9.938e-01  -2.217   0.1570  
-timbre6Variance                5.426e+00  1.230e+00   4.412   0.0477 *
-timbre7Variance               -1.377e+00  1.061e+00  -1.298   0.3237  
-timbre8Variance               -2.472e+00  9.444e-01  -2.618   0.1202  
-timbre9Variance                4.214e-01  4.964e-01   0.849   0.4853  
-timbre10Variance               2.774e+00  4.844e-01   5.726   0.0292 *
-timbre11Variance              -4.942e-01  8.812e-01  -0.561   0.6314  
-timeSignature                 -2.719e-01  8.725e-02  -3.117   0.0894 .
-songKey                        4.447e-01  1.002e-01   4.438   0.0472 *
-mode                           2.236e+00  3.978e-01   5.622   0.0302 *
-startOfFadeOut                -3.115e+00  1.421e+00  -2.193   0.1596  
-duration                       8.432e-01  1.778e+00   0.474   0.6820  
-endOfFadeIn                    1.638e-01  3.365e-01   0.487   0.6746  
-loudness                      -1.198e-01  9.545e-02  -1.255   0.3362  
-tempo                          1.235e-01  9.605e-02   1.286   0.3273  
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Coefficients: (138 not defined because of singularities)
+                                 Estimate Std. Error t value Pr(>|t|)
+(Intercept)                        0.1937         NA      NA       NA
+barsStartMedian                        NA         NA      NA       NA
+barsStartMean                          NA         NA      NA       NA
+barsStartVariance                      NA         NA      NA       NA
+barsStartRange                         NA         NA      NA       NA
+beatsStartMedian                       NA         NA      NA       NA
+beatsStartMean                         NA         NA      NA       NA
+beatsStartVariance                     NA         NA      NA       NA
+beatsStartRange                        NA         NA      NA       NA
+sectionsStartMedian                    NA         NA      NA       NA
+sectionsStartMean                      NA         NA      NA       NA
+sectionsStartVariance                  NA         NA      NA       NA
+sectionsStartRange                     NA         NA      NA       NA
+segmentsMaxLoudnessMedian              NA         NA      NA       NA
+segmentsMaxLoudnessMean                NA         NA      NA       NA
+segmentsMaxLoudnessVariance            NA         NA      NA       NA
+segmentsMaxLoudnessRange               NA         NA      NA       NA
+segmentsMaxLoudnessTimeMedian          NA         NA      NA       NA
+segmentsMaxLoudnessTimeMean            NA         NA      NA       NA
+segmentsMaxLoudnessTimeVariance        NA         NA      NA       NA
+segmentsMaxLoudnessTimeRange           NA         NA      NA       NA
+segmentsMaxLoudnessStartMedian         NA         NA      NA       NA
+segmentsMaxLoudnessStartMean           NA         NA      NA       NA
+segmentsMaxLoudnessStartVariance       NA         NA      NA       NA
+segmentsMaxLoudnessStartRange          NA         NA      NA       NA
+segmentsStartMedian                    NA         NA      NA       NA
+segmentsStartMean                      NA         NA      NA       NA
+segmentsStartVariance                  NA         NA      NA       NA
+segmentsStartRange                     NA         NA      NA       NA
+tatumsStartMedian                      NA         NA      NA       NA
+tatumsStartMean                        NA         NA      NA       NA
+tatumsStartVariance                    NA         NA      NA       NA
+tatumsStartRange                       NA         NA      NA       NA
+timbre0Median                          NA         NA      NA       NA
+timbre0Mean                            NA         NA      NA       NA
+timbre0Variance                        NA         NA      NA       NA
+timbre0Range                           NA         NA      NA       NA
+timbre1Median                          NA         NA      NA       NA
+timbre1Mean                            NA         NA      NA       NA
+timbre1Variance                        NA         NA      NA       NA
+timbre1Range                           NA         NA      NA       NA
+timebre2Median                         NA         NA      NA       NA
+timebre2Mean                           NA         NA      NA       NA
+timebre2Variance                       NA         NA      NA       NA
+timebre2Range                          NA         NA      NA       NA
+timbre3Median                          NA         NA      NA       NA
+timbre3Mean                            NA         NA      NA       NA
+timbre3Variance                        NA         NA      NA       NA
+timbre3Range                           NA         NA      NA       NA
+timbre4Median                          NA         NA      NA       NA
+timbre4Mean                            NA         NA      NA       NA
+timbre4Variance                        NA         NA      NA       NA
+timbre4Range                           NA         NA      NA       NA
+timbre5Median                          NA         NA      NA       NA
+timbre5Mean                            NA         NA      NA       NA
+timbre5Variance                        NA         NA      NA       NA
+timbre5Range                           NA         NA      NA       NA
+timbre6Median                          NA         NA      NA       NA
+timbre6Mean                            NA         NA      NA       NA
+timbre6Variance                        NA         NA      NA       NA
+timbre6Range                           NA         NA      NA       NA
+timbre7Median                          NA         NA      NA       NA
+timbre7Mean                            NA         NA      NA       NA
+timbre7Variance                        NA         NA      NA       NA
+timbre7Range                           NA         NA      NA       NA
+timbre8Median                          NA         NA      NA       NA
+timbre8Mean                            NA         NA      NA       NA
+timbre8Variance                        NA         NA      NA       NA
+timbre8Range                           NA         NA      NA       NA
+timbre9Median                          NA         NA      NA       NA
+timbre9Mean                            NA         NA      NA       NA
+timbre9Variance                        NA         NA      NA       NA
+timbre9Range                           NA         NA      NA       NA
+timbre10Median                         NA         NA      NA       NA
+timbre10Mean                           NA         NA      NA       NA
+timbre10Variance                       NA         NA      NA       NA
+timbre10Range                          NA         NA      NA       NA
+timbre11Median                         NA         NA      NA       NA
+timbre11Mean                           NA         NA      NA       NA
+timbre11Variance                       NA         NA      NA       NA
+timbre11Range                          NA         NA      NA       NA
+pitch0Median                           NA         NA      NA       NA
+pitch0Mean                             NA         NA      NA       NA
+pitch0Variance                         NA         NA      NA       NA
+pitch0Range                            NA         NA      NA       NA
+pitch1Median                           NA         NA      NA       NA
+pitch1Mean                             NA         NA      NA       NA
+pitch1Variance                         NA         NA      NA       NA
+pitch1Range                            NA         NA      NA       NA
+pitch2Median                           NA         NA      NA       NA
+pitch2Mean                             NA         NA      NA       NA
+pitch2Variance                         NA         NA      NA       NA
+pitch2Range                            NA         NA      NA       NA
+pitch3Median                           NA         NA      NA       NA
+pitch3Mean                             NA         NA      NA       NA
+pitch3Variance                         NA         NA      NA       NA
+pitch3Range                            NA         NA      NA       NA
+pitch4Median                           NA         NA      NA       NA
+pitch4Mean                             NA         NA      NA       NA
+pitch4Variance                         NA         NA      NA       NA
+pitch4Range                            NA         NA      NA       NA
+pitch5Median                           NA         NA      NA       NA
+pitch5Mean                             NA         NA      NA       NA
+pitch5Variance                         NA         NA      NA       NA
+pitch5Range                            NA         NA      NA       NA
+pitch6Median                           NA         NA      NA       NA
+pitch6Mean                             NA         NA      NA       NA
+pitch6Variance                         NA         NA      NA       NA
+pitch6Range                            NA         NA      NA       NA
+pitch7Median                           NA         NA      NA       NA
+pitch7Mean                             NA         NA      NA       NA
+pitch7Variance                         NA         NA      NA       NA
+pitch7Range                            NA         NA      NA       NA
+pitch8Median                           NA         NA      NA       NA
+pitch8Mean                             NA         NA      NA       NA
+pitch8Variance                         NA         NA      NA       NA
+pitch8Range                            NA         NA      NA       NA
+pitch9Median                           NA         NA      NA       NA
+pitch9Mean                             NA         NA      NA       NA
+pitch9Variance                         NA         NA      NA       NA
+pitch9Range                            NA         NA      NA       NA
+pitch10Median                          NA         NA      NA       NA
+pitch10Mean                            NA         NA      NA       NA
+pitch10Variance                        NA         NA      NA       NA
+pitch10Range                           NA         NA      NA       NA
+pitch11Median                          NA         NA      NA       NA
+pitch11Mean                            NA         NA      NA       NA
+pitch11Variance                        NA         NA      NA       NA
+pitch11Range                           NA         NA      NA       NA
+timeSignature                          NA         NA      NA       NA
+songKey                                NA         NA      NA       NA
+mode                                   NA         NA      NA       NA
+startOfFadeOut                         NA         NA      NA       NA
+duration                               NA         NA      NA       NA
+endOfFadeIn                            NA         NA      NA       NA
+danceability                           NA         NA      NA       NA
+energy                                 NA         NA      NA       NA
+loudness                               NA         NA      NA       NA
+tempo                                  NA         NA      NA       NA
 
-Residual standard error: 0.1549 on 2 degrees of freedom
-Multiple R-squared:  0.9983,	Adjusted R-squared:  0.976 
-F-statistic: 44.78 on 26 and 2 DF,  p-value: 0.02206
+Residual standard error: NaN on 0 degrees of freedom
 
