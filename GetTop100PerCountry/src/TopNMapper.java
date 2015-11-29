@@ -12,33 +12,11 @@ import org.apache.hadoop.mapreduce.Mapper;
 public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 
 	//Indexes
-	int artistHottnessIndex = 3;
 	int latitudeIndex = 5;
 	int longitudeIndex = 7;
 	int artistNameIndex = 11;
-	int barStartIndex = 18;
-	int beatsStartIndex = 20;
-	int danceabilityIndex = 21;
-	int durationIndex = 22;
-	int endOfFadeInIndex = 23;
-	int energyIndex = 24;
-	int keyIndex = 25;
-	int loudnessIndex = 27;
-	int modeIndex = 28;
-	int sectionsStartIndex = 33;
-	int segMaxLoudnessIndex = 35;
-	int segMaxLoudTimeIndex = 36;
-	int segMaxLoudStartIndex = 37;
-	int segPitchesIndex = 38;
-	int segStartIndex = 39;
-	int segTimbreIndex = 40;
 	int songHottnessIndex = 42;
-	int startOfFadeOutIndex = 44;
-	int tatumsStartIndex = 46;
-	int tempoIndex = 47;
-	int timeSignatureIndex = 48;
 	int songTitleIndex = 50;
-	int yearIndex = 53;
 
 	HashMap<String, String> geoCodeLookup = new HashMap<String, String>();
 	
@@ -47,7 +25,6 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 	protected void setup(Mapper<LongWritable, Text, Text, SongWritable>.Context context) throws IOException, InterruptedException {
 		if (context.getCacheFiles() != null && context.getCacheFiles().length > 0) {
 			URI mappingFileUri = context.getCacheFiles()[0];
-			URI countriesFileUri = context.getCacheFiles()[1];
 			
 			if (mappingFileUri != null) {
 				File file = new File("theFile1");
@@ -62,21 +39,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 
 				reader.close();
 			}
-
-			if (countriesFileUri != null) {
-				File file = new File("theFile2");
-
-				Scanner reader = new Scanner(file);
-
-				while (reader.hasNext()) {
-					String line = reader.nextLine();
-					countriesToGet.add(line.replaceAll("\\s+", ""));
-				}
-			}
 		}
-
-		// Will be easier to have a file with a list of the names and then iterate 
-		// through to add it. 
 		
 		super.setup(context);
 	}
@@ -92,35 +55,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			double longitude = Double.parseDouble(split[longitudeIndex]);
 			
 			// Implement new lookup table
-			String location = geoCodeLookup.get(split[latitudeIndex] +"," + split[longitudeIndex]);//reverseGeoCode.nearestPlace(latitude, longitude).country;
-
-			// Composition 1D Arrays
-			String barsStart = split[barStartIndex];
-			String beatsStart = split[beatsStartIndex];
-			String sectionsStart = split[sectionsStartIndex];
-			String segmentsMaxLoudness = split[segMaxLoudnessIndex];
-			String segmentsMaxLoudnessTime = split[segMaxLoudTimeIndex];
-			String segmentsMaxLoudnessStart = split[segMaxLoudStartIndex];
-			String segmentsStart = split[segStartIndex];
-			String tatumsStart = split[tatumsStartIndex];
-			
-			// Composition 2D Array
-			String timbre = split[segTimbreIndex];
-			String pitches = split[segPitchesIndex];
-			
-			// Composition Integers
-			String timeSignature = split[timeSignatureIndex];
-			String songKey = split[keyIndex];
-			String mode = split[modeIndex];
-
-			// Composition Doubles/Floats
-			String startOfFadeOut = split[startOfFadeOutIndex];
-			String duration = split[durationIndex];
-			String endOfFadeIn = split[endOfFadeInIndex];
-			String danceability = split[danceabilityIndex];
-			String energy = split[energyIndex];
-			String loudness = split[loudnessIndex];
-			String tempo = split[tempoIndex];
+			String location = geoCodeLookup.get(split[latitudeIndex] +"," + split[longitudeIndex]);
 
 			// This must be accurate for comparisons.
 			Double hotness = -1.0;
@@ -131,13 +66,10 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, SongWritable> {
 			}
 			// Create identification string
 			String identString = song_title + "\t" + artist + "\t" + latitude + "\t" + longitude + "\t" + location;
-			String feature1DString = barsStart + "\t" + beatsStart + "\t" + sectionsStart + "\t" +segmentsMaxLoudness + "\t" + segmentsMaxLoudnessTime+ "\t" + segmentsMaxLoudnessStart + "\t" + segmentsStart + "\t"+ tatumsStart;
-			String featureIntegers = timeSignature + "\t" +songKey + "\t" + mode;
-			String featureDoubles = startOfFadeOut + "\t" +duration + "\t" + endOfFadeIn + "\t" +danceability + "\t" + energy + "\t" +loudness + "\t" + tempo;
 
-			if (hotness > 0.2 && location != null) {
+			if (hotness > 0 && location != null) {
 				if (countriesToGet.contains(location)) {
-					context.write(new Text(location), new SongWritable(identString, feature1DString, timbre, pitches, featureIntegers, featureDoubles, hotness));
+					context.write(new Text(location), new SongWritable(identString, hotness));
 				}
 			} 
 		}

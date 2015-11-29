@@ -50,6 +50,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, Text> {
 			URI[] uris = context.getCacheFiles();
 			
 			URI mappingFileuri = uris[0];
+			URI countrySongListUri = uris[1];
 			if (mappingFileuri != null) {
 				File file = new File("theFile0");
 				
@@ -63,25 +64,19 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, Text> {
 
 				reader.close();
 			}
-			
-			for (int i = 1; i < uris.length; i ++) {
-				URI uri = uris[i];
-				if (uri != null) {
-					String fileName = "theFile" + i;
-					File file = new File(fileName);
-					
-					Scanner reader = new Scanner(file);
-					// Save into class variable
-		            while (reader.hasNext()) {
-		            	String line = reader.nextLine();
-						String[] split = line.split("\t");
-						top100Songs.add(split[0]);
-					}
 
-					reader.close();
-				} else {
-					System.out.println("uri is null");
+			if (countrySongListUri != null) {
+				File file = new File("theFile1");
+				
+				Scanner reader = new Scanner(file);
+				// Save into class variable
+	            while (reader.hasNext()) {
+	            	String line = reader.nextLine();
+	            	// Get only the identification data
+	            	String[] split = line.split("\t");
+					top100Songs.add(split[0]);
 				}
+				reader.close();
 			}
 		}
 		mos = new MultipleOutputs<Text, Text>(context);
@@ -93,6 +88,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, Text> {
 		String[] split = value.toString().split("\t");
 
 		if (!split[latitudeIndex].toLowerCase().contains("nan") && !split[longitudeIndex].toLowerCase().contains("nan") && split.length == 54) {
+			String all_features = "";
 			String song_title = split[songTitleIndex];
 			String artist = split[artistNameIndex];
 			double latitude = Double.parseDouble(split[latitudeIndex]);
@@ -105,51 +101,44 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, Text> {
 			String timbre = split[segTimbreIndex];
 			String pitches = split[segPitchesIndex];
 			
-			String USData = "";
-			if (location != null && location.equals("US")) {
-				// Composition 1D Arrays
-				String barsStart = split[barStartIndex];
-				String beatsStart = split[beatsStartIndex];
-				String sectionsStart = split[sectionsStartIndex];
-				String segmentsMaxLoudness = split[segMaxLoudnessIndex];
-				String segmentsMaxLoudnessTime = split[segMaxLoudTimeIndex];
-				String segmentsMaxLoudnessStart = split[segMaxLoudStartIndex];
-				String segmentsStart = split[segStartIndex];
-				String tatumsStart = split[tatumsStartIndex];
-				
-				// Composition Integers
-				String timeSignature = split[timeSignatureIndex];
-				String songKey = split[keyIndex];
-				String mode = split[modeIndex];
+			// Composition 1D Arrays
+			String barsStart = split[barStartIndex];
+			String beatsStart = split[beatsStartIndex];
+			String sectionsStart = split[sectionsStartIndex];
+			String segmentsMaxLoudness = split[segMaxLoudnessIndex];
+			String segmentsMaxLoudnessTime = split[segMaxLoudTimeIndex];
+			String segmentsMaxLoudnessStart = split[segMaxLoudStartIndex];
+			String segmentsStart = split[segStartIndex];
+			String tatumsStart = split[tatumsStartIndex];
+			
+			// Composition Integers
+			String timeSignature = split[timeSignatureIndex];
+			String songKey = split[keyIndex];
+			String mode = split[modeIndex];
 
-				// Composition Doubles/Floats
-				String startOfFadeOut = split[startOfFadeOutIndex];
-				String duration = split[durationIndex];
-				String endOfFadeIn = split[endOfFadeInIndex];
-				String danceability = split[danceabilityIndex];
-				String energy = split[energyIndex];
-				String loudness = split[loudnessIndex];
-				String tempo = split[tempoIndex];
-				
-				String feature1DString = barsStart + "\t" + beatsStart + "\t" + sectionsStart + "\t" +segmentsMaxLoudness + "\t" + segmentsMaxLoudnessTime+ "\t" + segmentsMaxLoudnessStart + "\t" + segmentsStart + "\t"+ tatumsStart;
-				String featureIntegers = timeSignature + "\t" +songKey + "\t" + mode;
-				String featureDoubles = startOfFadeOut + "\t" +duration + "\t" + endOfFadeIn + "\t" +danceability + "\t" + energy + "\t" +loudness + "\t" + tempo;
-				
-				USData = feature1DString + "\t" + timbre + "\t" + pitches + "\t" + featureIntegers + "\t" + featureDoubles;
-			}
+			// Composition Doubles/Floats
+			String startOfFadeOut = split[startOfFadeOutIndex];
+			String duration = split[durationIndex];
+			String endOfFadeIn = split[endOfFadeInIndex];
+			String danceability = split[danceabilityIndex];
+			String energy = split[energyIndex];
+			String loudness = split[loudnessIndex];
+			String tempo = split[tempoIndex];
+			
+			String feature1DString = barsStart + "\t" + beatsStart + "\t" + sectionsStart + "\t" +segmentsMaxLoudness + "\t" + segmentsMaxLoudnessTime+ "\t" + segmentsMaxLoudnessStart + "\t" + segmentsStart + "\t"+ tatumsStart;
+			String featureIntegers = timeSignature + "\t" +songKey + "\t" + mode;
+			String featureDoubles = startOfFadeOut + "\t" +duration + "\t" + endOfFadeIn + "\t" +danceability + "\t" + energy + "\t" +loudness + "\t" + tempo;
+			
+			all_features = feature1DString + "\t" + timbre + "\t" + pitches + "\t" + featureIntegers + "\t" + featureDoubles;
 			
 			// Create identification string
 			String identString = song_title + "|" + artist + "|" + latitude + "|" + longitude + "|" + location;
 
 			if (top100Songs.contains(identString) || top100Songs.contains(song_title)) {
 				Text data = new Text();
-				if (location.equals("US")) {
-					data = new Text(USData);
-					identString = location + "\t" + song_title + "\t" + artist + "\t" + latitude + "\t" + longitude + "\t" + location;
-				} else {
-					data = new Text(timbre + "|" + pitches);
-				}
-				mos.write(new Text(identString), data, location+"Top100Data");
+				tabbedIdentString = location + "\t" + song_title + "\t" + artist + "\t" + latitude + "\t" + longitude + "\t" + location;
+				data = new Text(all_features);
+				mos.write(new Text(tabbedIdentString), data, location+"Top100Data");
 			} else {
 				System.out.println(identString + " not in list.");
 			}

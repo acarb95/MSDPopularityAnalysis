@@ -31,8 +31,7 @@ public class TopNReducer extends Reducer<Text, SongWritable, Text, Text> {
 		}
 		
 		for (int i = 0; i < length; i++) {
-			// new Text(Double.toString(list.get(i).hotness))
-			mos.write(new Text(list.get(i).title), new Text(list.get(i).outputFeatures()), key + "Top100Songs");
+			mos.write(new Text(list.get(i).identifyingData), new Text(Double.toString(list.get(i).hotness)), key + "Top100Songs");
 		}
 	}
 	
