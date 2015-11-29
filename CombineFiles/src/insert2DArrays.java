@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 
-public class Runner {
+public class insert2DArrays {
 
 	public static void main(String[] args) {
 		HashMap<String, String> top40Songs = new HashMap<String, String>();

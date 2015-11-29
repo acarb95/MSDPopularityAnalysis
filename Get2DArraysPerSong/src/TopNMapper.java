@@ -99,7 +99,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, Text, Text> {
 			double longitude = Double.parseDouble(split[longitudeIndex]);
 			
 			// Implement new lookup table
-			String location = geoCodeLookup.get(split[latitudeIndex] +"," + split[longitudeIndex]);//reverseGeoCode.nearestPlace(latitude, longitude).country;
+			String location = geoCodeLookup.get(split[latitudeIndex] +"," + split[longitudeIndex]);
 			
 			// Composition 2D Array
 			String timbre = split[segTimbreIndex];
