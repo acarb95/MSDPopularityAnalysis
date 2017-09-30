@@ -1,0 +1,2 @@
+# MSDPopularityAnalysis
+Hit Song Science is an interdisiplinary study of predicting song popularity. Previous work has used a variety of features, datasets, and labels for popularity as well as different machine learning techniques. I wanted to explore Hit Song Science in a broader view: worldwide. Using the Million Song Dataset, I investigated the correlation between a song's popularity and its features with a secondary goal of attempting to pick out specific song features a country prefers.
